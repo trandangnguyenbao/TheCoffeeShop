@@ -1,11 +1,17 @@
-import React from 'react'
 import './signup.css'
-import {AiFillExclamationCircle, AiFillCheckCircle} from 'react-icons/ai'
+
+import {AiFillCheckCircle, AiFillExclamationCircle} from 'react-icons/ai'
+
+import React from 'react'
 import UserIcon from '../../images/UserIcon.svg'
-import { useState } from 'react'
 import isEmty from 'validator/lib/isEmpty'
-// import { History, useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+
+// import { History, useHistory } from 'react-router-dom'
+
+
 const SignUp = () => {
     const history = useNavigate();
     const [user, setUser] = useState({
@@ -42,12 +48,10 @@ const SignUp = () => {
         const data = await res.json();
 
         if (data.status === 400){
-            window.alert("User already exists");
-            console.log("User already exists");
+            toast.error("Tài Khoản Đã Tồn Tại!")
         }
         else{
-            window.alert("Register Successful")
-            console.log("Register Successful");
+            toast.success("Đăng Ký Tài Khoản Thành Công!")
 
             history("/account/login")
         }

@@ -1,34 +1,68 @@
-import React from 'react'
+import 'react-toastify/dist/ReactToastify.css';
+
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
-import Navbar from './Component/Navbar'
-import Home from './pages/home/Home'
-import Career from './pages/career/Career'
-// import Coffee from './collection/coffee/Coffee'
-import HeaderMeta from './Component/HeaderMeta'
-import Footer from './Component/Footer'
-import TeaHome from './collection/tea/TeaHome'
-import CoffeeStory from '../src/pages/coffeeandstory/CoffeeStory'
-import Shop from '../src/pages/danhsachcuahang/Shop'
-import CoffeeHome from './collection/coffee/CoffeeHome'
-import Chitiet from './collection/chitiet/Chitiet'
-import CamHung from './pages/cloudfee/CamHung'
-import CoffeeStoryChild from './pages/coffeeandstory/CoffeeStoryChild'
-import TeaHolicStory from './pages/coffeeandstory/TeaHolicStory'
-import BlogStory from './pages/coffeeandstory/BlogStory'
-import Product from './collection/product/Product'
-import Cart from './container/Cart/Cart'
-import SignUp from './container/SignUp/SignUp'
-import Login from './container/Login/Login'
+
 import Account from './container/AccountPage/Account'
-import Order from './container/AccountPage/Order'
 import AddressOrder from './container/AccountPage/AddressOrder'
+import BlogStory from './pages/coffeeandstory/BlogStory'
+import CamHung from './pages/cloudfee/CamHung'
+import Career from './pages/career/Career'
+import Cart from './container/Cart/Cart'
+import Chitiet from './collection/chitiet/Chitiet'
+import CoffeeHome from './collection/coffee/CoffeeHome'
+import CoffeeStory from '../src/pages/coffeeandstory/CoffeeStory'
+import CoffeeStoryChild from './pages/coffeeandstory/CoffeeStoryChild'
+import Footer from './Component/Footer'
+import HeaderMeta from './Component/HeaderMeta'
+import Home from './pages/home/Home'
 import Infomation from './container/AccountPage/Infomation'
+import Login from './container/Login/Login'
+import Navbar from './Component/Navbar'
+import Order from './container/AccountPage/Order'
+import Product from './collection/product/Product'
+import React from 'react'
+import Shop from '../src/pages/danhsachcuahang/Shop'
+import SignUp from './container/SignUp/SignUp'
+import TeaHolicStory from './pages/coffeeandstory/TeaHolicStory'
+import TeaHome from './collection/tea/TeaHome'
+import { ToastContainer } from 'react-toastify';
+
+// import Coffee from './collection/coffee/Coffee'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import Career from './pages/career/Career'
 const App = () => {
   return (
     <BrowserRouter>
         <HeaderMeta />
         <Navbar />
+        <ToastContainer
+            autoClose={2000}
+            closeOnClick
+            pauseOnHover={true}
+            position='top-right'
+            style={{zIndex: 1000,
+              position: 'fixed',
+              top: '7rem',
+              right: '10px',}}
+          />
         <Routes>
         <Route index element = {<Home />} />
                 <Route path = '/collections/tra-tai-nha' element = {<TeaHome />} />
@@ -42,8 +76,9 @@ const App = () => {
                 <Route path= '/product/:path_name' element = {<Chitiet />} />
                 <Route path= '/collections/:path' element = {<Product />} />
                 <Route path= '/cart' element = {<Cart />} />
-                <Route path= '/account/Sign-up' element = {<SignUp />} />
+                {/* <Route path= '/account/Sign-up' element = {<SignUp />} /> */}
                 <Route path= '/account/Login' element = {<Login />} />
+                <Route path= '/account/sign-up' element = {<SignUp />} />
                 <Route path= '/accountInfo' element = {<Account/>} />
                 {/* <Route path= '/accountInfo' element = {<Info />} /> */}
                 <Route path= '/account/order' element = {<Order />} />

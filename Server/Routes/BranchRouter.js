@@ -1,7 +1,8 @@
-import express from "express";
-import asyncHandler from 'express-async-handler'
 import Branch from "../Models/BranchModel.js";
+import asyncHandler from 'express-async-handler'
+import express from "express";
 import mongoose from 'mongoose'
+
 const branchRoute = express.Router()
 
 // GET ALL BRANCH
@@ -29,7 +30,7 @@ branchRoute.get("/:Branch_id", asyncHandler(async (req, res) => {
 // CREATED NEW BRANCH
 branchRoute.post("/",(req,res)=>{
     const branch = new Branch({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         Branch_id: req.body.Branch_id,
         Country_name: req.body.Country_name,
         Province_name: req.body.Province_name,
@@ -73,41 +74,31 @@ branchRoute.delete("/:id",(req,res)=>{
 
 // UPDATE BRANCH
 
-branchRoute.put("/update/:id",(req,res)=>{
-    const branch = new Branch({
-        _id: mongoose.Types.ObjectId(),
-        Branch_id: req.body.Branch_id,
-        Country_name: req.body.Country_name,
-        Province_name: req.body.Province_name,
-        name: req.body.name,
-        path: req.body.path,
-        map: req.body.map,
-        address: req.body.address,
-        image: req.body.image,
-      });
-  
-      var id = req.body._id;
-      Branch.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-        }, (error,data) => {
-          if (error){
-              res.status(400)
-              throw new Error("Not Update Branch!")
-          }
-          else{
-            res.status(201).json({
-              _id:branch._id,
-              Branch_id: branch.Branch_id,
-              Province_name: branch.Province_name,
-              name: branch.name,
-              path: branch.path,
-              map: branch.map,
-              address: branch.address,
-              image: branch.image,
-              Country_name: branch.Country_name,
-          });
-          }
-        })
-      })
+branchRoute.put("/update/:id", async (req, res) => {
+  const branch = {
+    _id: req.body._id,
+    Branch_id: req.body.Branch_id,
+    Country_name: req.body.Country_name,
+    Province_name: req.body.Province_name,
+    name: req.body.name,
+    path: req.body.path,
+    map: req.body.map,
+    address: req.body.address,
+    image: req.body.image,
+  };
+
+  try {
+    const updatedBranch = await Branch.findByIdAndUpdate(req.params.id, branch, { new: true });
+
+    if (!updatedBranch) {
+      res.status(404).json({ error: 'Branch not found' });
+      return;
+    }
+
+    res.status(201).json(updatedBranch);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to update branch' });
+  }
+});
 
 export default branchRoute;

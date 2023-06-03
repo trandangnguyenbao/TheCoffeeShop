@@ -1,20 +1,22 @@
-import React from 'react'
-import {AiOutlineHome} from 'react-icons/ai'
-import {GrFormNext} from 'react-icons/gr'
-import {Link} from 'react-router-dom'
-import {AiOutlineFacebook, AiOutlineLink, AiOutlineDelete} from 'react-icons/ai'
-import {SiZalo} from 'react-icons/si'
-import {BsFillChatLeftFill} from 'react-icons/bs'
 import './cart.css'
 import '../AccountPage/account.css'
+
+import {AiOutlineDelete, AiOutlineFacebook, AiOutlineLink} from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
+
+import {AiOutlineHome} from 'react-icons/ai'
+import {BsFillChatLeftFill} from 'react-icons/bs'
+import {GrFormNext} from 'react-icons/gr'
+import {Link} from 'react-router-dom'
 import OrderData from '../../asset/fake-data/Order'
-import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import productData from '../../asset/fake-data/Product'
+import React from 'react'
+import {SiZalo} from 'react-icons/si'
+import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import productData from '../../asset/fake-data/Product'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import { useState } from 'react'
 
 const Cart = (props) => {
     const cart = useSelector((state) => state);
@@ -153,7 +155,7 @@ const Cart = (props) => {
                             <th>Tổng Tiền</th>
                             <th>Action</th>
                         </tr>
-                        {
+                        { cart.length > 0 ? (
                             cart.map((product) => {
                                 return (
                                     <tr>
@@ -180,6 +182,11 @@ const Cart = (props) => {
                                     </tr>
                                 )
                             })
+                        ) : (
+                            <tr>
+                                <td colSpan={6} style={{textAlign: "center"}}>Đơn hàng trống</td>
+                            </tr>
+                        )
                         }
                     </div>
                     </div>

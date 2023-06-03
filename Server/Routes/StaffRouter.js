@@ -1,7 +1,8 @@
-import express from "express";
 import asyncHandler from 'express-async-handler'
+import express from "express";
 import mongoose from 'mongoose'
 import staff from "../Models/StaffModle.js";
+
 const StaffRoute = express.Router();
 
 // GET ALL BRANCH
@@ -16,7 +17,7 @@ StaffRoute.get('/',(req,res)=>{
 // UPDATE ORDER
 StaffRoute.put("/update/:id",(req,res)=>{
     const Staff = new staff({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         status: req.body.status,
       });
   
@@ -40,7 +41,7 @@ StaffRoute.put("/update/:id",(req,res)=>{
       // CEEATED TABLE ORDER
       StaffRoute.post("/",(req,res)=>{
         const Staff = new staff({
-            _id: mongoose.Types.ObjectId(),
+            _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
             phone: req.body.phone,
             gender: req.body.gender,

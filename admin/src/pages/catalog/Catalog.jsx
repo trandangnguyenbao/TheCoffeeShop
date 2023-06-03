@@ -1,14 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import './catalog.css'
-import { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { Link } from 'react-router-dom'
+import Pagination from '@mui/material/Pagination';
+import PopupDelete from '../../Component/PopupDelete'
+import React from 'react'
+import Stack from '@mui/material/Stack';
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import PopupDelete from '../../Component/PopupDelete'
+import { useState } from 'react'
 
 const Catalog = () => {
     const history = useNavigate();
@@ -50,6 +51,7 @@ const Catalog = () => {
             method: "Delete"
         });
         result = await result.json();
+        console.log(result)
         if (result){
             return Catalogs;
         }

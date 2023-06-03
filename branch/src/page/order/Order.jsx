@@ -1,15 +1,19 @@
+import './order.css'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import {AiOutlineDelete} from 'react-icons/ai'
+import { Link } from 'react-router-dom'
+import Pagination from '@mui/material/Pagination';
 import React from "react"
-import { useState } from 'react'
+import Stack from '@mui/material/Stack';
 import axios from 'axios'
+import formatProductPrice from '../../Helper/index.js'
+import {toast} from 'react-toastify'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import formatProductPrice from '../../Helper/index.js'
-import { Link } from 'react-router-dom'
-import './order.css'
-import { useSelector, useDispatch } from 'react-redux'
-import {AiOutlineDelete} from 'react-icons/ai'
+import { useState } from 'react'
+
 const Order = () => {
     const history = useNavigate();
     const [Catalogs, setCaTaLogs] = useState([]);
@@ -73,6 +77,8 @@ const Order = () => {
     }
     fetchBranch();
     }, [])
+
+    console.log(branch)
 
     // const idBranch = branch.map((branch) => {
     //     if (branch.name == userInfo.chinhanh){
@@ -142,7 +148,8 @@ const Order = () => {
     }
     const children = list.slice(1)
     // console.log(children);
-    const handleSubmit =  ()=>{
+    const handleSubmit =  (e)=>{
+        e.preventDefault()
         const chinhanh = userInfo.chinhanh;
         const cost = sumWithInitial;
         const Soluong = Tongsoluong;
@@ -164,31 +171,42 @@ const Order = () => {
             children: children
         }
 
+        console.log(datas)
+
     // Thêm Đơn Hàng
     axios.post('/api/orderBranch/',data).then(function (response) {
-        console.log(response);
+        if (response.status === 201){
+            toast.success("Thêm đơn hàng thành công!")
+        }
+        else {
+            toast.error("Thêm đơn hàng thất bại!")
+        }
       })
       .catch(function (error) {
-        console.log(error);
+        toast.error("Thêm đơn hàng thất bại!")
       });
-      history("/order")
+    //   history("/order")
 
     // Thêm Danh Sách Sản Phẩm Vào Chi Tiết Đơn Hàng
     axios.post('/api/orderBranchDetail/',dulieu).then(function (response) {
-        console.log(response);
+        if (response.status === 201){
+            toast.success("Thêm đơn hàng thành công!")
+        }
+        else {
+            toast.error("Thêm đơn hàng thất bại!")
+        }
       })
       .catch(function (error) {
-        console.log(error);
+        toast.error("Thêm đơn hàng thất bại!")
       });
 
     // Cập Nhật Chi Nhánh Sau Khi Mua
     axios.put(`/api/branch/update/${id}`,datas).then(function (response) {
         console.log(response);
-        // console.log(id)
       })
       .catch(function (error) {
-        console.log(error);
-        history("/")
+        toast.success("Cập nhật chi nhánh thất bại!")
+        // history("/")
       });
 }
 

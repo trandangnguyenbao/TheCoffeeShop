@@ -1,23 +1,28 @@
-import React from 'react'
+import 'react-toastify/dist/ReactToastify.css';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import AddStaff from './page/staff/AddStaff'
+import AddTable from './page/table/AddTable'
+import Catalog from './page/catalog/Catalog'
 import Footer from '../src/Component/Footer'
 import HeaderMeta from '../src/Component/HeaderMeta'
-import Navbar from '../src/Component/Navbar'
-import Catalog from './page/catalog/Catalog'
-import ProductOfCatalog from './page/catalog/ProductOfCatalog'
 import Home from './page/Home'
-import Product from './page/product/Product'
-import Staff from './page/staff/Staff'
-import Table from './page/table/Table'
 import Login from './page/Account/Login'
-import ProductAdd from './page/product/ProductAdd'
-import AddTable from './page/table/AddTable'
-import TableUpdate from './page/table/TableUpdate'
-import AddStaff from './page/staff/AddStaff'
-import StaffUpdate from './page/staff/StaffUpdate'
-import Order from './page/order/Order'
 import ManageOrder from './page/manageOrder/ManageOrder'
+import Navbar from '../src/Component/Navbar'
+import Order from './page/order/Order'
 import OrderDetail from './page/manageOrder/OrderDetail'
+import Product from './page/product/Product'
+import ProductAdd from './page/product/ProductAdd'
+import ProductOfCatalog from './page/catalog/ProductOfCatalog'
+import React from 'react'
+import Staff from './page/staff/Staff'
+import StaffUpdate from './page/staff/StaffUpdate'
+import Table from './page/table/Table'
+import TableUpdate from './page/table/TableUpdate'
+import { ToastContainer } from 'react-toastify';
+
 // import Home from ''
 
 const App = () => {
@@ -25,6 +30,16 @@ const App = () => {
         <BrowserRouter>
             <HeaderMeta />
             <Navbar/>
+            <ToastContainer
+            autoClose={2000}
+            closeOnClick
+            pauseOnHover={true}
+            position='top-right'
+            style={{zIndex: 1000,
+              position: 'fixed',
+              top: '7rem',
+              right: '10px',}}
+            />
             <Routes>
                 <Route index element = {<Home />}/>
                 <Route path='/catalog' element = {<Catalog />}/>

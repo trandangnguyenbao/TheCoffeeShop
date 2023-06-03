@@ -1,24 +1,26 @@
-import React, { useState } from 'react'
 import './navbar.css'
+
+import {AiOutlineLogout, AiOutlineShoppingCart} from 'react-icons/ai'
 import {Link, NavLink} from 'react-router-dom'
-import {GoThreeBars} from 'react-icons/go'
-import {MdOutlineClose} from 'react-icons/md'
-import { links } from '../data'
-import Logo from '../images/logo1.png'
-import { icons } from 'react-icons/lib'
-import {AiOutlineCaretDown} from 'react-icons/ai'
-import { menuItem } from '../data'
-import {MdArrowDropDown} from 'react-icons/md'
-import Dropdown from './Dropdown'
-import StoryDropdown from './StoryDropDown'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import AccountDropdown from './AccountDropdown'
+import {AiOutlineCaretDown} from 'react-icons/ai'
+import Carticon from '../images/Carticon.png'
+import Dropdown from './Dropdown'
+import {GoThreeBars} from 'react-icons/go'
+import Logo from '../images/logo1.png'
+import {MdArrowDropDown} from 'react-icons/md'
+import {MdOutlineAccountCircle} from 'react-icons/md'
+import {MdOutlineClose} from 'react-icons/md'
+import StoryDropdown from './StoryDropDown'
+import { createContext } from 'react'
+import { icons } from 'react-icons/lib'
+import { links } from '../data'
+import { menuItem } from '../data'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-import { createContext } from 'react'
-import {AiOutlineShoppingCart,AiOutlineLogout} from 'react-icons/ai'
-import {MdOutlineAccountCircle} from 'react-icons/md'
-import Carticon from '../images/Carticon.png'
 
 const Navbar = () => {
     const [active, setActive] = useState(null);
@@ -29,7 +31,7 @@ const Navbar = () => {
     const history = useNavigate()
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     useEffect(() => {
-        if (userInfo) {
+        if (!userInfo) {
             // history("/account/login")
         }
     }, [history])
@@ -104,7 +106,7 @@ const Navbar = () => {
                                 // <>
                                 <li className="nav__link"  onMouseEnter = {() => setAccountDropdown(true)} onMouseLeave = {() => setAccountDropdown(false)} onClick = {() => setIsNavShowing (prev => !prev)}>
                                     <Link className='has-child' to={'/account/login'}>Đăng Nhập
-                                        {/* { accountdropdown && <AccountDropdown /> } */}
+                                        { accountdropdown && <AccountDropdown /> }
                                     </Link>
                                 </li>
                             )

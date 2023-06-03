@@ -1,18 +1,26 @@
-import React from 'react'
 import '../SignUp/signup.css'
-import {AiFillExclamationCircle, AiFillCheckCircle} from 'react-icons/ai'
+
+import {AiFillCheckCircle, AiFillExclamationCircle} from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+
+import Loading from '../../LoadingError/Loading'
+import Message from '../../LoadingError/Error'
+import React from 'react'
 import UserIcon from '../../images/UserIcon.svg'
-import { useState } from 'react'
+import axios from "axios";
 import isEmty from 'validator/lib/isEmpty'
+import { login } from '../../Actions/userActions'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-import axios from "axios";
+import { useState } from 'react'
+
 // import {useSelector, useDispatch} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { login } from '../../Actions/userActions'
-import Message from '../../LoadingError/Error'
-import Loading from '../../LoadingError/Loading'
-import { useNavigate, Link } from 'react-router-dom';
+
+
+
+
+
 const Login = () => {
     const history = useNavigate();
 
@@ -41,8 +49,7 @@ const Login = () => {
 
             const { data } = await axios.post('/api/user/login', {
                 phone, password
-            }, config);
-            // console.log(data);
+            }, config)
             localStorage.setItem('userInfo', JSON.stringify(data));
             history("/")
             setLoading(false);
@@ -63,15 +70,13 @@ const Login = () => {
                 <form action="" id='form' onSubmit={submitHandler}>
                     <div class="form-control">
                         <label >Số điện thoại: </label>
-                        <input type="text" placeholder="Nhập số điện thoại" id="phone"
+                        <input type="text" placeholder="Nhập số điện thoại" id="phone" autocomplete="username"
                         value={phone} onChange = {(e) => setPhone(e.target.value)} />
-                        {/* <small>{validationMsg.phone}</small> */}
                     </div>
                     <div class="form-control">
                         <label >Password: </label>
-                        <input type="password" name="" id="password" 
-                        value={password} onChange = {(e) => setPassWord(e.target.value)}/>
-                        {/* <small>{validationMsg.password}</small> */}
+                        <input type="password" name="" id="password" autocomplete="current-password"
+                        onChange = {(e) => setPassWord(e.target.value)}/>
                     </div>   
                     <div className="loginFrom">
                         <div className="loginForm--duytri">
@@ -81,7 +86,7 @@ const Login = () => {
                         <a href="">Quên mật khẩu</a>
                     </div>       
                         <div className='loginsubmit'><button type='submit' className='loginForm' >Đăng Nhập Tài Khoản</button></div>
-                    <span>Bạn chưa có tài khoản? <Link to = '/account/Sign-up'>Đăng Ký</Link> </span>
+                    <span>Bạn chưa có tài khoản? <Link to ='/account/sign-up'>Đăng Ký</Link></span>
                 </form>
             </div>
         </div>

@@ -1,11 +1,10 @@
-import express from 'express'
-import asyncHandler from 'express-async-handler'
-import genarataToken from '../utils/genarateToken.js'
-import protect from '../Middleware/AuthMiddleware.js'
-import mongoose from 'mongoose'
-import bcrypt from 'bcryptjs'
 import OrderBranchDetail from '../Models/OrderBranchDetailModel.js'
-
+import asyncHandler from 'express-async-handler'
+import bcrypt from 'bcryptjs'
+import express from 'express'
+import genarataToken from '../utils/genarateToken.js'
+import mongoose from 'mongoose'
+import protect from '../Middleware/AuthMiddleware.js'
 
 const orderBranchDetailRoute = express.Router()
 
@@ -22,7 +21,7 @@ orderBranchDetailRoute.get('/',(req,res)=>{
 // CREATED NEW USER
 orderBranchDetailRoute.post("/",(req,res)=>{
     const orderBranchDetail = new OrderBranchDetail({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         id_order: req.body.id_order,
         children: req.body.children
       });

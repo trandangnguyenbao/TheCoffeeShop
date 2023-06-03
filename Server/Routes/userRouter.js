@@ -1,10 +1,12 @@
-import express from 'express'
 import User from '../Models/UserModel.js'
 import asyncHandler from 'express-async-handler'
-import genarataToken from '../utils/genarateToken.js'
-import protect from '../Middleware/AuthMiddleware.js'
-import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
+import express from 'express'
+import genarataToken from '../utils/genarateToken.js'
+import mongoose from 'mongoose'
+import protect from '../Middleware/AuthMiddleware.js'
+import {toast} from 'react-toastify'
+
 // import fildeUpLoad from require("express-fileupload")
 // import users from './data/user.js';
 
@@ -47,7 +49,7 @@ userRoute.get('/',(req,res)=>{
 // CREATED NEW USER
 userRoute.post("/",(req,res)=>{
     const user = new User({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         phone: req.body.phone,
         gender: req.body.gender,
@@ -61,6 +63,7 @@ userRoute.post("/",(req,res)=>{
       return user
         .save()
         .then((newUser) => {
+            toast.success("Tạo tài khoản thành công!")
           return res.status(201).json({
             success: true,
             message: 'New cause created successfully',
@@ -68,7 +71,7 @@ userRoute.post("/",(req,res)=>{
           });
         })
         .catch((error) => {
-            console.log(error);
+            toast.error("Tạo tài khoản thất bại!")
           res.status(500).json({
             success: false,
             message: 'Server error. Please try again.',
@@ -171,7 +174,7 @@ userRoute.post("/register",
 // UPDATE USER
 userRoute.put("/update/:id",(req,res)=>{
     const user = new User({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         phone: req.body.phone,
         gender: req.body.gender,

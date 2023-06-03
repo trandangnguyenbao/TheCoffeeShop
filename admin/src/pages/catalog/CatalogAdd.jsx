@@ -1,8 +1,9 @@
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify';
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const CatalogAdd = () => {
     const history = useNavigate();
@@ -24,12 +25,10 @@ const CatalogAdd = () => {
         }
 
         axios.post('/api/cataloges/',data).then(function (response) {
-            console.log(response);
-            alert('Thêm Loại Hàng Thành Công');
-            
+            toast.success("Thêm loại hàng thành công!")
           })
           .catch(function (error) {
-            console.log(error);
+            toast.error("Thêm loại hàng thất bại!")
             history("/add-catalog")
           });
           history("/catalog")

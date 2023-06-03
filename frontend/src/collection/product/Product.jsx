@@ -1,19 +1,32 @@
-import React from 'react'
-import {NavLink, Link, useParams   } from 'react-router-dom'
-import { AiTwotoneHeart} from 'react-icons/ai'
-import {BsFillBagFill} from 'react-icons/bs'
-// import Catalog from '../../asset/fake-data/Catalog'
 import './product.css'
-import { caphe } from '../../data'
-import { cafeDropdown, cloudfee, tra, hitea, banh, khac } from '../../data'
-import { useState } from 'react'
+
+import {Link, NavLink, useParams} from 'react-router-dom'
+import { banh, cafeDropdown, cloudfee, hitea, khac, tra } from '../../data'
+
+import { AiTwotoneHeart } from 'react-icons/ai'
+import {BsFillBagFill} from 'react-icons/bs'
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
-// import Products from '../../asset/fake-data/ProductForCatalog'
 import axios from 'axios'
-import { useEffect } from 'react'
-import sp1 from '../../images/hitea/sp1.jpg'
+import { caphe } from '../../data'
 import formatProductPrice from '../../Helper'
+import sp1 from '../../images/hitea/sp1.jpg'
+import { useEffect } from 'react'
+import { useState } from 'react'
+
+// import Catalog from '../../asset/fake-data/Catalog'
+
+
+
+
+
+
+// import Products from '../../asset/fake-data/ProductForCatalog'
+
+
+
+
 const Product = () => {
     const [catalog, setCatalog] = useState('Cà Phê Việt Nam')
     const liItem = document.querySelector('li.container__product--menu');
@@ -52,7 +65,7 @@ const Product = () => {
       <div className="container container__product col-lg-12 col-md-12 col-sm-12 col-12">
           <select className='container__product--menu col-lg-2 col-md-12 col-sm-12 col-12' onChange={(e) => handleCatalog(e)}>
                 {
-                    Catalogs.map(({id,name, path, children}, index) => {
+                    Catalogs?.map(({id,name, path, children}, index) => {
                         return (
                             <option value={name}><NavLink to = {`/collections/${path}`}>{name}</NavLink></option>
                         )
@@ -61,13 +74,13 @@ const Product = () => {
             </select>
             <ul className="container__product--menu col-lg-2 col-md-12 col-sm-12 col-12 position-sticky" id="">
                 {
-                    Catalogs.map(({id,name, path, children}) => {
+                    Catalogs?.map(({id,name, path, children}) => {
                         return (
                             <li className="container__product--menu" key={id}>
                                 <NavLink to = {`/collections/${path}`} onClick={() => setCatalog(name)} className = "">{name}</NavLink>
                                 <ul className="product__menu--child">
                                 {
-                                    children.map(({name, path, TypeCatalogParent}, index) => {
+                                    children?.map(({name, path, TypeCatalogParent}, index) => {
                                         return (
                                             <li className="product__menu--child " key={index}>
                                                 <NavLink to = {`/collections/${path}`}  className = "" onClick={() => setCatalog(name)} >{name}</NavLink>
@@ -85,7 +98,7 @@ const Product = () => {
           <div className="container__product--item col-lg-10 col-md-12 col-sm-12 col-12">
           <div className="container__producthome--item col-lg-12 col-md-12 col-sm-12 col-12 row">
                    {
-                        Products.map((Product) => {
+                        Products?.map((Product) => {
                             if ( Product.catalog === catalog || Product.catalogParent === catalog){
                                 return (
                                     <>

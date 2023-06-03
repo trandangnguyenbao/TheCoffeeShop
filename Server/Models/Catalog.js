@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const CatalogSchema = mongoose.Schema({
     id: {
-        type: number, 
+        type: Number, 
         require: true, 
         default: 1
     }, 

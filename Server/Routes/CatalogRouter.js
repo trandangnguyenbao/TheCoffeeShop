@@ -1,7 +1,8 @@
-import express from 'express'
-import Catalog from '../Models/Catalog.js'  
+import Catalog from '../Models/Catalog.js'
 import asyncHandler from 'express-async-handler'
+import express from 'express'
 import mongoose from 'mongoose'
+
 // import Catalogs from "./data/Catalog.js";
 
 const catalogRoute = express.Router()
@@ -48,7 +49,7 @@ catalogRoute.get("/:id", asyncHandler(async (req, res) => {
 // CREATE CATALOG Coffee
 catalogRoute.post("/",(req,res)=>{
     const catalog = new Catalog({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         path: req.body.path,
         TypeCatalogParent: req.body.TypeCatalogParent,

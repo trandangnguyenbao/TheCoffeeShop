@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
 import './navbar.css'
+import './navbar.css'
+
 import {Link, NavLink} from 'react-router-dom'
-import { links } from '../data'
-import './navbar.css'
+import React, { useState } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+
 import Logo from '../images/logo1.png'
 import Slide from '../images/slide1.png'
-import { useNavigate } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux'
+import { links } from '../data'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const history = useNavigate()
@@ -15,7 +17,6 @@ const Navbar = () => {
     useEffect(() => {
         if (!userInfo) {
             history('/login')
-            // history("/")
         }
     }, [history])
     return(

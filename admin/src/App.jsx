@@ -1,9 +1,7 @@
-import React from 'react'
+import 'react-toastify/dist/ReactToastify.css';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Footer from './Component/Footer'
-import HeaderMeta from './Component/HeaderMeta'
-import Navbar from './Component/Navbar'
-import Login from './pages/Account/Login'
+
 import Branch from './pages/branch/Branch'
 import BranchAdd from './pages/branch/BranchAdd'
 import BranchDetail from './pages/branch/BranchDetail'
@@ -11,22 +9,39 @@ import BranchUpdate from './pages/branch/BranchUpdate'
 import Catalog from './pages/catalog/Catalog'
 import CatalogAdd from './pages/catalog/CatalogAdd'
 import CatalogUpdate from './pages/catalog/CatalogUpdate'
-import ProductOfCatalog from './pages/catalog/ProductOfCatalog'
+import Footer from './Component/Footer'
+import HeaderMeta from './Component/HeaderMeta'
 import Home from './pages/Home'
+import Login from './pages/Account/Login'
+import Navbar from './Component/Navbar'
 import Order from './pages/Order/Order'
 import OrderDetail from './pages/Order/OrderDetail'
 import OrderUpdate from './pages/Order/OrderUpdate'
 import Product from './pages/product/Product'
 import ProductAdd from './pages/product/ProductAdd'
+import ProductOfCatalog from './pages/catalog/ProductOfCatalog'
 import ProductUpdate from './pages/product/ProductUpdate'
+import React from 'react'
+import { ToastContainer } from 'react-toastify';
 import User from './pages/user/User'
 import UserAdd from './pages/user/UserAdd'
 import UserUpdate from './pages/user/UserUpdate'
+
 const App = () => {
   return (
     <BrowserRouter>
       <HeaderMeta />
       <Navbar/>
+      <ToastContainer
+            autoClose={2000}
+            closeOnClick
+            pauseOnHover={true}
+            position='top-right'
+            style={{zIndex: 1000,
+              position: 'fixed',
+              top: '7rem',
+              right: '10px',}}
+          />
       <Routes>
         <Route index element = {<Home />}/>
         <Route path='/catalog' element = {<Catalog />} />

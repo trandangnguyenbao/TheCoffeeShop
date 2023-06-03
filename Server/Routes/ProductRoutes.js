@@ -1,8 +1,9 @@
-import express from 'express'
-import asyncHandler from 'express-async-handler'
-import Products from '../Models/ProductModel.js'
 import Catalog from '../Models/Catalog.js'
+import Products from '../Models/ProductModel.js'
+import asyncHandler from 'express-async-handler'
+import express from 'express'
 import mongoose from 'mongoose'
+
 // import multer from 'multer'
 
 // const upload = multer({dest: 'uploads/'})
@@ -43,7 +44,7 @@ productRoute.get('/all', async (res,req) => {
 
 productRoute.post("/",(req,res)=>{
     const product = new Products({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
         path_name: req.body.path_name,
         descript: req.body.descript,
@@ -86,7 +87,7 @@ productRoute.delete("/:id",(req,res)=>{
 
 productRoute.put("/update/:id",(req,res)=>{
   const product = new Products({
-      _id: mongoose.Types.ObjectId(),
+      _id: new mongoose.Types.ObjectId(),
       title: req.body.title,
       path_name: req.body.path_name,
       descript: req.body.descript,

@@ -1,8 +1,9 @@
-import express from 'express'
-import asyncHandler from 'express-async-handler'
-import mongoose from 'mongoose'
 import Cataloges from '../Models/Cataloges.js'
 import Catalogoes from '../Models/CatalogMolder.js'
+import asyncHandler from 'express-async-handler'
+import express from 'express'
+import mongoose from 'mongoose'
+
 // import Catalogs from "./data/Catalog.js";
 
 const catalogesRoute = express.Router()
@@ -49,7 +50,7 @@ catalogesRoute.get("/:id", asyncHandler(async (req, res) => {
 // CREATE CATALOG CREATE
 catalogesRoute.post("/",(req,res)=>{
     const catalog = new Catalogoes({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         path: req.body.path,
         TypeCatalogParent: req.body.TypeCatalogParent,

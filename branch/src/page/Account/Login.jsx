@@ -1,15 +1,17 @@
-import React from 'react'
 import './signup.css'
-import {AiFillExclamationCircle, AiFillCheckCircle} from 'react-icons/ai'
+
+import {AiFillCheckCircle, AiFillExclamationCircle} from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+
+import React from 'react'
 import UserIcon from '../../images/UserIcon.svg'
-import { useState } from 'react'
-// import isEmty from 'validator/lib/isEmpty'
+import axios from "axios";
+import {toast} from 'react-toastify'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-import axios from "axios";
-// import {useSelector, useDispatch} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react'
+
 const Login = () => {
     const history = useNavigate();
 
@@ -33,18 +35,15 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 }
             }
-
             setLoading(true)
-
             const { data } = await axios.post('/api/user/login', {
                 phone, password
             }, config);
-            // console.log(data);
+            toast.success('Đăng Nhập Thành Công!')
             localStorage.setItem('userInfo', JSON.stringify(data));
-            window.alert("Đăng Nhập Thành Công")
             history("/")
-            // setLoading(false);
         } catch (error) {
+            toast.error("Tài khoản hoặc mật khẩu không hợp lệ!")
             setError(error.response.data.message);
         }
     }

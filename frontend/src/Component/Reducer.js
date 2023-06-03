@@ -1,10 +1,14 @@
+import { toast } from "react-toastify";
+
 const Reducer = (cart = [], action) => {
     if (action.type === "ADD"){
         let tempcart = cart.filter((product) => product.title === action.payload.title)
         if (tempcart<1){
+            toast.success("Thêm sản phẩm thành công")
             return [...cart, action.payload]
         }
         else{
+            toast.success("Thêm sản phẩm thành công")
             return cart;
         }
     }

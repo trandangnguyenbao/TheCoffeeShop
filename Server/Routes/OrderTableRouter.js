@@ -1,8 +1,9 @@
-import express from "express";
-import asyncHandler from 'express-async-handler'
-import mongoose from 'mongoose'
-import Orders from "../Models/OrderModel.js";
 import OrderTable from "../Models/OrderTable.js";
+import Orders from "../Models/OrderModel.js";
+import asyncHandler from 'express-async-handler'
+import express from "express";
+import mongoose from 'mongoose'
+
 const orderTableRoute = express.Router();
 
 // GET ALL BRANCH
@@ -17,7 +18,7 @@ orderTableRoute.get('/',(req,res)=>{
 // UPDATE ORDER
 orderTableRoute.put("/update/:id",(req,res)=>{
     const orderTable = new OrderTable({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         status: req.body.status,
       });
   
@@ -41,7 +42,7 @@ orderTableRoute.put("/update/:id",(req,res)=>{
       // CEEATED TABLE ORDER
       orderTableRoute.post("/",(req,res)=>{
         const orderTable = new OrderTable({
-            _id: mongoose.Types.ObjectId(),
+            _id: new mongoose.Types.ObjectId(),
             id_order: req.body.id_order,
             name: req.body.name,
             phone: req.body.phone,

@@ -1,10 +1,13 @@
-import React from 'react'
 import './dropdown.css'
+
 import {Link, NavLink} from 'react-router-dom'
-import {useState} from 'react'
+
+import React from 'react'
 import axios from 'axios'
-import { useEffect } from 'react'
 import { cafeDropdown } from '../data'
+import { useEffect } from 'react'
+import {useState} from 'react'
+
 // import Catalog from '../asset/fake-data/Catalog'
 
 const Dropdown = () => {
@@ -16,6 +19,8 @@ const Dropdown = () => {
         }
         fetchCatalogs();
     }, [])
+
+    console.log(Catalogs)
     const [nameChild, setNameChild] = useState('Cà Phê Việt Nam');
         const liItem = document.querySelector('li.container__product--menu');
         const handleOnClick = () => {
@@ -30,13 +35,13 @@ const Dropdown = () => {
     <div className="container-fluid container__dropdown">
         <ul className='nav__dropdown'>
             {
-                Catalogs.map(({id,name,path,children}) => {
+                Catalogs?.map(({id,name,path,children}) => {
                     return (
                         <li className="nav__dropdown" key={id}>
                             <Link to = {`/collections/${path}`} key = {id}>{name}</Link>
                             <ul className="nav__dropdownchild">
                                 {
-                                    children.map((catalog) => {
+                                    children?.map((catalog) => {
                                         return (
                                             <li className="nav__dropdownchild">
                                                 <Link to = {`/collections/${catalog.path}`} onClick={() => setNameChild(name)}>{catalog.name}</Link>
