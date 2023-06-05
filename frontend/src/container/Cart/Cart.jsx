@@ -174,7 +174,7 @@ const Cart = (props) => {
                             })
                         ) : (
                             <tr>
-                                <td colSpan={6} style={{textAlign: "center"}}>Đơn hàng trống</td>
+                                <td colSpan={6} style={{textAlign: "center", height: "auto"}}>Đơn hàng trống</td>
                             </tr>
                         )
                         }

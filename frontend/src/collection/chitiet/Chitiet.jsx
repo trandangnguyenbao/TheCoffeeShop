@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { API_BASE_URL } from '../../config'
+import { Skeleton } from 'antd'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
 import productData from '../../asset/fake-data/Product'
@@ -54,65 +55,39 @@ const Chitiet = ({match, history}) => {
   return (
     <div className="container container__detail col-lg-12 col-md-12 col-sm-12 col-12">
         {
-          Products.map((product) => {
-            product.quantity = 1
-            if (product.path_name === path_name){
-              return(
-                <div className="container__detail--item col-lg-12 col-md-12 col-sm-12 col-12">
-                <div className="detail__item--child col-lg-5 col-md-12 col-sm-12 col-12">
-                    <img src={product.img} alt="" className="item__child--large" />
-                    <img src={product.img} alt="" className="item__child--small" />
-                </div>
-                <div className="detail__item--child col-lg-7 col-md-12 col-sm-12 col-12">
-                    <h2 className="detail__item--title">{product.title}</h2>
-                    <h2 className="detail__item--cost">{formatProductPrice(product.cost) || formatProductPrice(product.cost = costAfterAdd)}</h2>
-                    {/* <div className="detail__item--size">
-                    {/* <p>Chọn size (bắt buộc)</p> */}
-                    {/* <ul className="item__size--select">
-                        <li className= "Small" onClick = {() => {
-                                const cost = product.cost
-                                const costs = costAfterAdd
-                                setCostAffterAdd(costAfterAdd = Number(product.cost + 0))
-                            }
-                                // setCostAffterAdd(product.cost = Number(product.cost) + 1000 ) }
-                            }>
-                                <p>Nhỏ + 0đ</p>
-                        </li>
-                        <li className= "Medium" onClick = {() => {
-                                const cost = product.cost
-                                const costs = costAfterAdd
-                                setCostAffterAdd(costAfterAdd = Number(product.cost + 6000))
-                            }
-                                // setCostAffterAdd(product.cost = Number(product.cost) + 1000 ) }
-                            }>
-                                <p>Vừa + 6.000đ</p>
-                        </li>
-                        <li className= "Large" onClick = {() => {
-                            const cost = product.cost
-                            const costs = costAfterAdd
-                            setCostAffterAdd(costAfterAdd = Number(product.cost + 10000))
-                        }
-                            // setCostAffterAdd(product.cost = Number(product.cost) + 1000 ) }
-                        }>
-                            <p>Lớn + 10.000đ</p>
-                        </li>
-                    </ul> */}
-                  {/* </div> */} 
-                  <div className="detail__item--amount">
-                    <p>Số Lượng: </p>
-                      <input type="number" value= {product.quantity} name='quantity' min = '1' max = '100' onChange={(e) => setSoluong(e.target.value)}/>
+          (Products.length > 0) ? (
+            Products.map((product) => {
+              product.quantity = 1
+              if (product.path_name === path_name){
+                return(
+                  <div className="container__detail--item col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div className="detail__item--child col-lg-5 col-md-12 col-sm-12 col-12">
+                      <img src={product.img} alt="" className="item__child--large" />
+                      <img src={product.img} alt="" className="item__child--small" />
                   </div>
-                  <div className="detail__item--descript">
-                    <p>Mô Tả Sản Phẩm</p>
-                    <span>{product.descript}</span>
+                  <div className="detail__item--child col-lg-7 col-md-12 col-sm-12 col-12">
+                      <h2 className="detail__item--title">{product.title}</h2>
+                      <h2 className="detail__item--cost">{formatProductPrice(product.cost) || formatProductPrice(product.cost = costAfterAdd)}</h2>
+                    <div className="detail__item--amount">
+                      <p>Số Lượng: </p>
+                        <input type="number" value= {product.quantity} name='quantity' min = '1' max = '100' onChange={(e) => setSoluong(e.target.value)}/>
+                    </div>
+                    <div className="detail__item--descript">
+                      <p>Mô Tả Sản Phẩm</p>
+                      <span>{product.descript}</span>
+                    </div>
+                    <button onClick ={() => dispatch({type: "ADD", payload: product})}>Thêm vào giỏ hàng</button>   
+                    {/* <button onClick ={addToCartHandle}>Thêm vào giỏ hàng</button>    */}
                   </div>
-                  <button onClick ={() => dispatch({type: "ADD", payload: product})}>Thêm vào giỏ hàng</button>   
-                  {/* <button onClick ={addToCartHandle}>Thêm vào giỏ hàng</button>    */}
-                </div>
-            </div>
-              )
-            }
-          })  
+              </div>
+                )
+              }
+            })  
+          ) : (
+            <Skeleton paragraph={{
+              rows: 6,
+            }}/>
+          )
         }
        
         <hr />

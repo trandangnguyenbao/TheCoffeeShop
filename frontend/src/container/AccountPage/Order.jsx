@@ -92,27 +92,6 @@ const Order = () => {
                             }
                         })
                     }
-                    {/* <tr>
-                        <td>570458</td>
-                        <td>29/10/2022</td>
-                        <td>Thùng Cà Phê Sữa Espresso</td>
-                        <td>450.000đ</td>
-                        <td>Đặt hàng thành công</td>
-                    </tr>
-                    <tr>
-                        <td>570458</td>
-                        <td>29/10/2022</td>
-                        <td>Thùng Cà Phê Sữa Espresso</td>
-                        <td>450.000đ</td>
-                        <td>Đặt hàng thành công</td>
-                    </tr>
-                    <tr>
-                        <td>570458</td>
-                        <td>29/10/2022</td>
-                        <td>Thùng Cà Phê Sữa Espresso</td>
-                        <td>450.000đ</td>
-                        <td>Đặt hàng thành công</td>
-                    </tr> */}
                 </div> 
                 <div className="container__order--container d-none">
                     <ul>

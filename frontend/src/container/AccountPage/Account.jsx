@@ -9,6 +9,7 @@ import {FaRegUserCircle} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import {SiZalo} from 'react-icons/si'
+import { Skeleton } from 'antd'
 import User from '../../asset/fake-data/user'
 import UserIcon from '../../images/UserIcon.svg'
 import axios from 'axios'
@@ -71,45 +72,51 @@ const Account = () => {
             <div className="container__accountpage--contain--item">
                 <form action="">
                     {
-                        user.map((user) => {
-                            if (user.phone === userInfo.phone){
-                                return (
-                                    <>
-                                    <div className="contain--item">
-                                        <div>
-                                            <label htmlFor="">Số Điện Thoại:</label>
-                                            <input type="text" name="phone" id="phone" value= {user.phone} />
+                        (user) ? (
+                            user.map((user) => {
+                                if (user.phone === userInfo.phone){
+                                    return (
+                                        <>
+                                        <div className="contain--item">
+                                            <div>
+                                                <label htmlFor="">Số Điện Thoại:</label>
+                                                <input type="text" name="phone" id="phone" value= {user.phone} />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="">Họ Và Tên:</label>
+                                                <input type="text" name="username" id="username" value= {user.name} />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <label htmlFor="">Họ Và Tên:</label>
-                                            <input type="text" name="username" id="username" value= {user.name} />
+                                        <div className="contain--item">
+                                            <div>
+                                                <label htmlFor="">Ngày Sinh:</label>
+                                                <input type="date" name="birthday" id="birthday" defaultValue = {user.birthday} />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="">Giới Tính:</label>
+                                                <input type="text" disabled name="gender" id="gender" value= {user.gender} />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="contain--item">
-                                        <div>
-                                            <label htmlFor="">Ngày Sinh:</label>
-                                            <input type="date" name="birthday" id="birthday" defaultValue = {user.birthday} />
+                                        <div className="contain--item">
+                                            <div>
+                                                <label htmlFor="">Địa Chỉ:</label>
+                                                <input type="text" name="address" id="address" value = {user.address} />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="">Mật Khẩu:</label>
+                                                <input type="password" name="password" id="password" value = {user.password} disabled />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <label htmlFor="">Giới Tính:</label>
-                                            <input type="text" disabled name="gender" id="gender" value= {user.gender} />
-                                        </div>
-                                    </div>
-                                    <div className="contain--item">
-                                        <div>
-                                            <label htmlFor="">Địa Chỉ:</label>
-                                            <input type="text" name="address" id="address" value = {user.address} />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="">Mật Khẩu:</label>
-                                            <input type="password" name="password" id="password" value = {user.password} disabled />
-                                        </div>
-                                    </div>
-                                    <div className='update'><button className='Update'>Cập Nhật Thông Tin</button></div>
-                                    </>
-                                )
-                            }
-                        })
+                                        <div className='update'><button className='Update'>Cập Nhật Thông Tin</button></div>
+                                        </>
+                                    )
+                                }
+                            })
+                        ) : (
+                            <Skeleton paragraph={{
+                                rows: 6,
+                              }}/>
+                        )
                     }
                 </form>
             </div>
