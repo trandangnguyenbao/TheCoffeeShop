@@ -13,7 +13,7 @@ const CoffeeHome = () => {
     const [Products, setProducts] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
+            const {data} = await axios.get(`https://thecoffeeserver-vxqs.onrender.com/api/collections/`)
             setProducts(data)
         }
         fetchProducts();

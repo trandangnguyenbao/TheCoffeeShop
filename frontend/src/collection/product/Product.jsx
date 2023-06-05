@@ -1,31 +1,12 @@
 import './product.css'
 
-import {Link, NavLink, useParams} from 'react-router-dom'
-import { banh, cafeDropdown, cloudfee, hitea, khac, tra } from '../../data'
+import { Link, NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 
 import { AiTwotoneHeart } from 'react-icons/ai'
-import {BsFillBagFill} from 'react-icons/bs'
-import Pagination from '@mui/material/Pagination';
-import React from 'react'
-import Stack from '@mui/material/Stack';
+import { BsFillBagFill } from 'react-icons/bs'
 import axios from 'axios'
-import { caphe } from '../../data'
 import formatProductPrice from '../../Helper'
-import sp1 from '../../images/hitea/sp1.jpg'
-import { useEffect } from 'react'
-import { useState } from 'react'
-
-// import Catalog from '../../asset/fake-data/Catalog'
-
-
-
-
-
-
-// import Products from '../../asset/fake-data/ProductForCatalog'
-
-
-
 
 const Product = () => {
     const [catalog, setCatalog] = useState('Cà Phê Việt Nam')
