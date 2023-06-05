@@ -1,5 +1,5 @@
-{
-  "name": "coffeeshop",
+  {
+    "name": "coffeeshop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,7 +35,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://thecoffeeserver-vxqs.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",
