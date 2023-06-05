@@ -1,8 +1,10 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react'
 
 const TableUpdate = () => {
     let {id} = useParams()
@@ -19,7 +21,7 @@ const TableUpdate = () => {
    const [countries, setCountries] = useState([]);
    useEffect(() => {
     const fetchCountry = async () => {
-        const {data} = await axios.get('/api/country/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/country/`)
         setCountries(data)
     }
     fetchCountry();
@@ -29,7 +31,7 @@ const TableUpdate = () => {
     
     useEffect(() => {
         const fetchOrderTable = async () => {
-            const {data} = await axios.get('/api/ordertable/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/ordertable/`)
             setOrderTable(data);
         }
         fetchOrderTable();
@@ -39,7 +41,7 @@ const TableUpdate = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
@@ -55,7 +57,7 @@ const TableUpdate = () => {
         }
 
         // console.log(id)
-        axios.put(`/api/orderTable/update/${id}`,data).then(function (response) {
+        axios.put(`${API_BASE_URL}/api/orderTable/update/${id}`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {

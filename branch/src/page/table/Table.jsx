@@ -1,13 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import './table.css'
-import { useState, useMemo } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react'
-import formatProductPrice from '../../Helper/index.js'
-import { useNavigate } from 'react-router-dom';
+
+import { useMemo, useState } from 'react'
+
+import { API_BASE_URL } from '../../config';
+import { Link } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
+import formatProductPrice from '../../Helper/index.js'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Table = () => {
     const history = useNavigate();
@@ -23,7 +26,7 @@ const Table = () => {
     
     useEffect(() => {
         const fetchOrderTable = async () => {
-            const {data} = await axios.get('/api/ordertable/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/ordertable/`)
             setOrderTable(data);
             setSearchApiData(data);
         }
@@ -46,7 +49,7 @@ const Table = () => {
 
 
     const deleteOrderTable = async (id) => {
-        let result = await fetch(`/api/orderTable/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/orderTable/${id}`, {
             method: "Delete"
         });
         result = await result.json();

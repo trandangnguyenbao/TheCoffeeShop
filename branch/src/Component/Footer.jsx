@@ -1,16 +1,13 @@
-import React from 'react'
-import './footer.css'
-import { Link } from 'react-router-dom'
-import PhoneIcon from '../images/phone.jpg'
-import MapIcon from '../images/map.jpg'
-import FooterImage from '../images/footer.jpg'
-import LogoSmall from '../images/logosmall.jpg'
 import './boostrap.min.css'
-import {AiFillFacebook} from 'react-icons/ai'
-import {AiFillInstagram} from 'react-icons/ai'
-import {AiFillTwitterSquare} from 'react-icons/ai'
-import {AiFillGoogleSquare} from 'react-icons/ai'
+import './footer.css'
 
+import { AiFillFacebook, AiFillGoogleSquare, AiFillInstagram, AiFillTwitterSquare } from 'react-icons/ai'
+
+import FooterImage from '../images/footer.jpg'
+import { Link } from 'react-router-dom'
+import MapIcon from '../images/map.jpg'
+import PhoneIcon from '../images/phone.jpg'
+import React from 'react'
 
 const Footer = () => {
   return (

@@ -1,13 +1,17 @@
-import React from 'react'
 import './manageorder.css'
+
+import { useMemo, useState } from 'react'
+
+import { API_BASE_URL } from '../../config';
 import { Link } from 'react-router-dom'
-import { useState, useMemo } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react'
-import formatProductPrice from '../../Helper/index.js'
-import { useNavigate } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
+import formatProductPrice from '../../Helper/index.js'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 const ManageOrder = () => {
     const [Order, setOrder] = useState([]);
     const [searchApiData, setSearchApiData] = useState([]);
@@ -23,7 +27,7 @@ const ManageOrder = () => {
     
     useEffect(() => {
         const fetchOrder = async () => {
-            const {data} = await axios.get('/api/orderBranch/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/orderBranch/`)
             setOrder(data);
             setSearchApiData(data);
         }
@@ -47,7 +51,7 @@ const ManageOrder = () => {
 
     const deleteOrder = async (id) => {
         // console.log(id)
-        let result = await fetch(`/api/orderBranch/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/orderBranch/${id}`, {
             method: "Delete"
         });
         result = await result.json();

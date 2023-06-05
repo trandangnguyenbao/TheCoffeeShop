@@ -1,18 +1,14 @@
-import './order.css'
+import './order.css';
 
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
-import {AiOutlineDelete} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import Pagination from '@mui/material/Pagination';
-import React from "react"
-import Stack from '@mui/material/Stack';
-import axios from 'axios'
-import formatProductPrice from '../../Helper/index.js'
-import {toast} from 'react-toastify'
-import { useEffect } from 'react'
+import { API_BASE_URL } from '../../config';
+import { AiOutlineDelete } from 'react-icons/ai';
+import axios from 'axios';
+import formatProductPrice from '../../Helper/index.js';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
 
 const Order = () => {
     const history = useNavigate();
@@ -28,7 +24,7 @@ const Order = () => {
     const [phone, setPhone] = useState("");
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get('/api/catalog/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/catalog/`)
             setCaTaLogs(data)
         }
         fetchCatalogs();
@@ -40,7 +36,7 @@ const Order = () => {
     
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get('/api/collections/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
             setProducts(data);
         }
         fetchProducts();
@@ -72,32 +68,15 @@ const Order = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
     }, [])
-
-    console.log(branch)
-
-    // const idBranch = branch.map((branch) => {
-    //     if (branch.name == userInfo.chinhanh){
-    //         return branch._id
-    //     }
-    // })
-
-    // const id = idBranch[0];
-
-    // const DoanhThu = branch.map((branch) => {
-    //     if (branch.name == userInfo.chinhanh) {
-    //         return branch.doanhthu
-    //     }
-    // })
-    // const DoanhThuBranch = DoanhThu[0];
     const [order, setOrder] = useState([]);
     useEffect(() => {
           const fetchOrder = async () => {
-              const {data} = await axios.get('/api/orderBranch/')
+              const {data} = await axios.get(`${API_BASE_URL}/api/orderBranch/`)
               setOrder(data)
           }
           fetchOrder();
@@ -174,7 +153,7 @@ const Order = () => {
         console.log(datas)
 
     // Thêm Đơn Hàng
-    axios.post('/api/orderBranch/',data).then(function (response) {
+    axios.post(`${API_BASE_URL}/api/orderBranch/`,data).then(function (response) {
         if (response.status === 201){
             toast.success("Thêm đơn hàng thành công!")
         }
@@ -188,7 +167,7 @@ const Order = () => {
     //   history("/order")
 
     // Thêm Danh Sách Sản Phẩm Vào Chi Tiết Đơn Hàng
-    axios.post('/api/orderBranchDetail/',dulieu).then(function (response) {
+    axios.post(`${API_BASE_URL}/api/orderBranchDetail/`,dulieu).then(function (response) {
         if (response.status === 201){
             toast.success("Thêm đơn hàng thành công!")
         }
@@ -201,7 +180,7 @@ const Order = () => {
       });
 
     // Cập Nhật Chi Nhánh Sau Khi Mua
-    axios.put(`/api/branch/update/${id}`,datas).then(function (response) {
+    axios.put(`${API_BASE_URL}/api/branch/update/${id}`,datas).then(function (response) {
         console.log(response);
       })
       .catch(function (error) {

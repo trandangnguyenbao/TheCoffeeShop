@@ -1,11 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import './home.css'
-import { useState } from 'react'
+
+import { API_BASE_URL } from '../config'
+import { Link } from 'react-router-dom'
+import React from 'react'
 import axios from 'axios'
-import { useEffect } from 'react'
 import formatProductPrice from '../Helper'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const Home = () => {
     const history = useNavigate();
@@ -19,7 +21,7 @@ const Home = () => {
     var number = 0;
       useEffect(() => {
           const fetchProducts = async () => {
-              const {data} = await axios.get('/api/collections/')
+              const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
               setProducts(data)
           }
           fetchProducts();
@@ -29,7 +31,7 @@ const Home = () => {
     const [Catalogs, setCaTaLogs] = useState([]);
       useEffect(() => {
           const fetchCatalogs = async() => {
-              const {data} = await axios.get('/api/cataloges/')
+              const {data} = await axios.get(`${API_BASE_URL}/api/cataloges/`)
               setCaTaLogs(data)
           }
           fetchCatalogs();
@@ -39,7 +41,7 @@ const Home = () => {
     
     useEffect(() => {
         const fetchOrderTable = async () => {
-            const {data} = await axios.get('/api/ordertable/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/ordertable/`)
             setOrderTable(data);
         }
         fetchOrderTable();
@@ -49,7 +51,7 @@ const Home = () => {
     
     useEffect(() => {
         const fetchStaff = async () => {
-            const {data} = await axios.get('/api/staff/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/staff/`)
             setStaff(data);
         }
         fetchStaff();
@@ -59,7 +61,7 @@ const Home = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
@@ -82,7 +84,7 @@ const Home = () => {
     
     useEffect(() => {
         const fetchOrder = async () => {
-            const {data} = await axios.get('/api/orderBranch/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/orderBranch/`)
             setOrder(data);
         }
         fetchOrder();

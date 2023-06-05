@@ -1,15 +1,11 @@
 import './navbar.css'
-import './navbar.css'
 
-import {Link, NavLink} from 'react-router-dom'
-import React, { useState } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-
+import { Link } from 'react-router-dom'
 import Logo from '../images/logo1.png'
+import React from 'react'
 import Slide from '../images/slide1.png'
-import { links } from '../data'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
     const history = useNavigate()

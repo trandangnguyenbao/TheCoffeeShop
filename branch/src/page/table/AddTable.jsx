@@ -1,8 +1,9 @@
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const AddTable = () => {
     const history = useNavigate();
@@ -23,7 +24,7 @@ const AddTable = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
@@ -38,7 +39,7 @@ const AddTable = () => {
             chinhanh: chinhanh,
         }
 
-        axios.post('/api/orderTable/',data).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/orderTable/`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {

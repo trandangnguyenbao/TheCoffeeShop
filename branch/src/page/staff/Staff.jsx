@@ -1,13 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import './staff.css'
-import { useState, useMemo } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react'
-import formatProductPrice from '../../Helper/index.js'
-import { useNavigate } from 'react-router-dom';
+
+import { useMemo, useState } from 'react'
+
+import { API_BASE_URL } from '../../config';
+import { Link } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
+import formatProductPrice from '../../Helper/index.js'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Staff = () => {
     const history = useNavigate();
@@ -24,7 +27,7 @@ const Staff = () => {
     
     useEffect(() => {
         const fetchStaff = async () => {
-            const {data} = await axios.get('/api/staff/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/staff/`)
             setStaff(data);
             setSearchApiData(data);
         }
@@ -48,7 +51,7 @@ const Staff = () => {
 
     const deleteStaff = async (id) => {
         // console.log(id)
-        let result = await fetch(`/api/staff/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/staff/${id}`, {
             method: "Delete"
         });
         result = await result.json();

@@ -1,5 +1,6 @@
-import React from 'react'
 import './headermeta.css'
+
+import React from 'react'
 import { headerMeta } from '../data'
 
 const HeaderMeta = () => {

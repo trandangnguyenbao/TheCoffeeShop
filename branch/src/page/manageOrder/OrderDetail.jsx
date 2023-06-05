@@ -1,12 +1,15 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { useState } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react'
 import '../manageOrder/manageorder.css'
-// import './branch.css'
-import { useNavigate } from 'react-router-dom';
+
+import React, { useEffect, useState } from 'react'
+
+import { API_BASE_URL } from '../../config'
+import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import { useParams } from 'react-router-dom'
+
+// import './branch.css'
+
+
 const OrderDetail = () => {
   let {id_order} = useParams(); 
 
@@ -14,7 +17,7 @@ const OrderDetail = () => {
     const [Order, setOrder] = useState([]);
    useEffect(() => {
     const fetchOrder = async () => {
-        const {data} = await axios.get('/api/orderBranchDetail/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/orderBranchDetail/`)
         setOrder(data);
     }
     fetchOrder();

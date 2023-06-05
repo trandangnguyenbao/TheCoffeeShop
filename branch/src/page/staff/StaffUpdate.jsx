@@ -1,8 +1,10 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react'
 
 const StaffUpdate = () => {
     let {id} = useParams()
@@ -26,7 +28,7 @@ const StaffUpdate = () => {
     
     useEffect(() => {
         const fetchStaff = async () => {
-            const {data} = await axios.get('/api/staff/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/staff/`)
             setStaff(data);
         }
         fetchStaff();
@@ -36,7 +38,7 @@ const StaffUpdate = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
@@ -54,7 +56,7 @@ const StaffUpdate = () => {
         }
 
         // console.log(id)
-        axios.put(`/api/staff/update/${id}`,data).then(function (response) {
+        axios.put(`${API_BASE_URL}/api/staff/update/${id}`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {

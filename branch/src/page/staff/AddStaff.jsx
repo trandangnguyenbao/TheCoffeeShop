@@ -1,8 +1,9 @@
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const AddStaff = () => {
     const history = useNavigate();
@@ -24,7 +25,7 @@ const AddStaff = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
@@ -60,7 +61,7 @@ const AddStaff = () => {
             staff: staff,
         }
 
-        axios.post('/api/staff/',data).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/staff/`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {
@@ -70,12 +71,9 @@ const AddStaff = () => {
           history("/staff")
 
         // Cập Nhật Chi Nhánh
-          axios.put(`/api/branch/update/${id}`,datas).then(function (response) {
-            console.log(response);
-            console.log(id)
+          axios.put(`${API_BASE_URL}/api/branch/update/${id}`,datas).then(function (response) {
           })
           .catch(function (error) {
-            console.log(error);
             history("/")
           });
         alert('Cập nhật Chi Nhánh Thành Công');
