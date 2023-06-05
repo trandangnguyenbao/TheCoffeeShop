@@ -3,18 +3,18 @@ import './teahome.css'
 import {Link, NavLink} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
+import { API_BASE_URL } from '../../config'
 import { AiTwotoneHeart } from 'react-icons/ai'
 import {BsFillBagFill} from 'react-icons/bs'
 import React from 'react'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
-import url from '../../config'
 
 const TeaHome = () => {
     const [Products, setProducts] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get(`${url}/api/collections/`)
+            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
             setProducts(data)
         }
         fetchProducts();

@@ -4,6 +4,7 @@ import '../AccountPage/account.css'
 import {AiOutlineDelete, AiOutlineFacebook, AiOutlineLink} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { API_BASE_URL } from '../../config'
 import {AiOutlineHome} from 'react-icons/ai'
 import {BsFillChatLeftFill} from 'react-icons/bs'
 import {GrFormNext} from 'react-icons/gr'
@@ -34,7 +35,7 @@ const Cart = (props) => {
     const [user, setUser] = useState([]);
     useEffect(() => {
           const fetchUser = async () => {
-              const {data} = await axios.get('/api/user')
+              const {data} = await axios.get(`${API_BASE_URL}/api/user`)
               setUser(data)
           }
           fetchUser();
@@ -51,7 +52,7 @@ const Cart = (props) => {
     const [order, setOrder] = useState([]);
     useEffect(() => {
           const fetchOrder = async () => {
-              const {data} = await axios.get('/api/order/')
+              const {data} = await axios.get(`${API_BASE_URL}/api/order/`)
               setOrder(data)
           }
           fetchOrder();
@@ -90,17 +91,6 @@ const Cart = (props) => {
         list = list.concat(product);
     }
     const children = list.slice(1)
-    // console.log(children);
-    // const [product, setProduct] = useState([]);
-    // const Product = cart.map((products) => {
-    //     setProduct = {
-    //         "title": products.title,
-    //         "image": products.img,
-    //         "soluong": products.quantity,
-    //         "tongtien": products.soluong + products.quantity
-    //     }
-    // })
-    // console.log(product);
      const handleSubmit = () =>{
         // const name = name;/
         const totalPrice = sumWithInitial;
@@ -118,7 +108,7 @@ const Cart = (props) => {
         }
 
         // Thêm Đơn Hàng
-        axios.post('/api/order/',data).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/order/`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {
@@ -126,7 +116,7 @@ const Cart = (props) => {
           });
 
         //   Thêm Dữ Liệu Chi Tiết Đơn Hàng
-        axios.post('/api/orderdetail/',datas).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/orderdetail/`,datas).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {

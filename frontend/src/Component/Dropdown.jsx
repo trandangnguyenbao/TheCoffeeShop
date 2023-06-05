@@ -2,6 +2,7 @@ import './dropdown.css'
 
 import {Link, NavLink} from 'react-router-dom'
 
+import { API_BASE_URL } from '../config'
 import React from 'react'
 import axios from 'axios'
 import { cafeDropdown } from '../data'
@@ -14,13 +15,12 @@ const Dropdown = () => {
     const [Catalogs, setCaTaLogs] = useState([]);
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get('/api/catalog/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/catalog/`)
             setCaTaLogs(data)
         }
         fetchCatalogs();
     }, [])
 
-    console.log(Catalogs)
     const [nameChild, setNameChild] = useState('Cà Phê Việt Nam');
         const liItem = document.querySelector('li.container__product--menu');
         const handleOnClick = () => {

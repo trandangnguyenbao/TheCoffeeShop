@@ -1,15 +1,17 @@
-import React from 'react'
-import { coffeeHolic, CoffeeHolicStory, teaHolicStory, Story, StoryBlog } from '../../data';
-import {NavLink} from 'react-router-dom';
-import './coffeestorychild.css'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import './coffeestorychild.css';
+
+import { useEffect, useState } from 'react';
+
+import { API_BASE_URL } from '../../config';
+import { NavLink } from 'react-router-dom';
+import React from 'react';
+import axios from 'axios';
 
 const TeaHolicStory = () => {
     const [StoryBlog, setStoryBlog] = useState([]);
     useEffect(() => {
         const fetchStory = async () => {
-            const {data} = await axios.get('/api/pages/story/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/pages/story/`)
             setStoryBlog(data)
         }
         fetchStory();

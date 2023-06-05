@@ -3,11 +3,11 @@ import './product.css'
 import { Link, NavLink } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 
+import {API_BASE_URL} from '../../config.js'
 import { AiTwotoneHeart } from 'react-icons/ai'
 import { BsFillBagFill } from 'react-icons/bs'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
-import url from '../../config'
 
 const Product = () => {
     const [catalog, setCatalog] = useState('Cà Phê Việt Nam')
@@ -31,14 +31,14 @@ const Product = () => {
     const [Catalogs, setCaTaLogs] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get(`${url}/api/collections/`)
+            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
             setProducts(data)
         }
         fetchProducts();
     }, [])
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get(`${url}/api/catalog/`)
+            const {data} = await axios.get('/api/catalog/')
             setCaTaLogs(data)
         }
         fetchCatalogs();

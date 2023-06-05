@@ -1,18 +1,22 @@
-import React from 'react'
 import './account.css'
-import UserIcon from '../../images/UserIcon.svg'
-import {FaRegUserCircle} from 'react-icons/fa'
-import {AiOutlineNotification} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+
 import {AiOutlineFacebook, AiOutlineLink} from 'react-icons/ai'
-import {SiZalo} from 'react-icons/si'
+
+import { API_BASE_URL } from '../../config'
+import {AiOutlineNotification} from 'react-icons/ai'
 import {BsFillChatLeftFill} from 'react-icons/bs'
+import {FaRegUserCircle} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import React from 'react'
+import {SiZalo} from 'react-icons/si'
 import User from '../../asset/fake-data/user'
-import { useNavigate} from 'react-router-dom';
-import { useEffect } from 'react'
-import { useState } from 'react'
+import UserIcon from '../../images/UserIcon.svg'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+
 const Account = () => {
     const history = useNavigate();
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -25,7 +29,7 @@ const Account = () => {
     const [user, setUser] = useState([]);
     useEffect(() => {
           const fetchUser = async () => {
-              const {data} = await axios.get('/api/user')
+              const {data} = await axios.get(`${API_BASE_URL}/api/user`)
               setUser(data)
           }
           fetchUser();

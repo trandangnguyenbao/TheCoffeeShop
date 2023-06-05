@@ -1,25 +1,22 @@
-import React from 'react'
-import './home.css'
-import { slideShow } from '../../data'
-import {MdOutlineNavigateNext} from 'react-icons/md'
-import {GrFormPrevious} from 'react-icons/gr'
-import { useState, useEffect } from 'react';
-import Banner1 from '../../images/banner1.jpg'
-import { homeProduct } from '../../data'
 import '../../style'
+import './home.css'
+
+import React, { useEffect, useState } from 'react'
+import { blog, coffeeHolic, slideHome, teaHolic } from '../../data'
+
+import { AiTwotoneHeart } from 'react-icons/ai'
+import Banner1 from '../../images/banner1.jpg'
+import { BsFillBagFill } from 'react-icons/bs'
 import CloudImage from '../../images/_creme-brulee.jpg'
 import CloudeImage2 from '../../images/_creamy.jpg'
 import HomeStoryImage from '../../images/coffee-2.jpg'
-import { coffeeHolic } from '../../data'
-import { teaHolic } from '../../data'
-import { blog } from '../../data'
-import { AiTwotoneHeart} from 'react-icons/ai'
-import {BsFillBagFill} from 'react-icons/bs'
-import { slideHome } from '../../data'
-import productData from '../../asset/fake-data/Product'
-// import heroSliderData from '../../asset/fake-data/hero-slider'
-import SliderImage from '../../images/slide1.png'
 import { Link } from 'react-router-dom'
+import SliderImage from '../../images/slide1.png'
+import productData from '../../asset/fake-data/Product'
+
+// import heroSliderData from '../../asset/fake-data/hero-slider'
+
+
 
 const Home = () => {
 

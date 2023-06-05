@@ -1,13 +1,11 @@
 import './signup.css'
 
-import {AiFillCheckCircle, AiFillExclamationCircle} from 'react-icons/ai'
+import React, { useState } from 'react'
 
-import React from 'react'
+import { API_BASE_URL } from '../../config'
 import UserIcon from '../../images/UserIcon.svg'
-import isEmty from 'validator/lib/isEmpty'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // import { History, useHistory } from 'react-router-dom'
 
@@ -21,7 +19,6 @@ const SignUp = () => {
     let name, value;
 
     const handleInputs = (e) => {
-        console.log(e);
         name = e.target.name;
         value = e.target.value;
 
@@ -32,7 +29,7 @@ const SignUp = () => {
         e.preventDefault();
 
         const {name, phone, password, confirmPassword} = user;
-        const res = await fetch("/api/user/register", {
+        const res = await fetch(`${API_BASE_URL}/api/user/register`, {
             method: "POST", 
             headers: {
                 "Content-Type" : "application/json"

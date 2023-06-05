@@ -1,25 +1,12 @@
-import '../SignUp/signup.css'
+import '../SignUp/signup.css';
 
-import {AiFillCheckCircle, AiFillExclamationCircle} from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useEffect, useState } from 'react';
 
-import Loading from '../../LoadingError/Loading'
-import Message from '../../LoadingError/Error'
-import React from 'react'
-import UserIcon from '../../images/UserIcon.svg'
+import { API_BASE_URL } from '../../config';
+import Message from '../../LoadingError/Error';
+import UserIcon from '../../images/UserIcon.svg';
 import axios from "axios";
-import isEmty from 'validator/lib/isEmpty'
-import { login } from '../../Actions/userActions'
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
-import { useState } from 'react'
-
-// import {useSelector, useDispatch} from 'react'
-
-
-
-
 
 const Login = () => {
     const history = useNavigate();
@@ -47,7 +34,7 @@ const Login = () => {
 
             setLoading(true)
 
-            const { data } = await axios.post('/api/user/login', {
+            const { data } = await axios.post(`${API_BASE_URL}/api/user/login`, {
                 phone, password
             }, config)
             localStorage.setItem('userInfo', JSON.stringify(data));

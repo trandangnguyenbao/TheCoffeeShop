@@ -1,17 +1,28 @@
-import React from 'react'
 import './shop.css'
+
+import { AiFillCar, AiOutlineFacebook, AiOutlineLink } from 'react-icons/ai'
+import { SiHomeassistantcommunitystore, SiZalo } from 'react-icons/si'
+import { useEffect, useState } from 'react'
+
+import { API_BASE_URL } from '../../config'
+import { BiShoppingBag } from 'react-icons/bi'
+import { BsFillChatLeftFill } from 'react-icons/bs'
 import ChiNhanhImage from '../../images/cuahang.jpg'
+import { Link } from 'react-router-dom'
+import React from 'react'
+import axios from 'axios'
+
 // import { cuahang } from '../../data'
 // import {NavLink} from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import {AiOutlineFacebook, AiOutlineLink, AiFillCar} from 'react-icons/ai'
-import {SiZalo} from 'react-icons/si'
-import {BsFacebook, BsFillChatLeftFill} from 'react-icons/bs'
-import {SiHomeassistantcommunitystore} from 'react-icons/si'
-import {BiShoppingBag} from 'react-icons/bi'
+
+
+
+
+
+
 // import State from '../../asset/fake-data/State'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+
+
 
 const Shop = () => {
   const [country, setCountry] = useState('TP. Hồ Chí Minh')
@@ -21,28 +32,17 @@ const Shop = () => {
   const handleDistrict = (e) => {
       const getDisTrictName = e.target.value;
       setDisTrictId(getDisTrictName);
-      console.log(getDisTrictName)
   }
   const handleCity = (e) => {
       const getCityName = e.target.value;
       setCountry(getCityName);
-      console.log(getCityName)
       setDisTrictId('Bình Thạnh')
   }
-  console.log(districtId)
-//   const [State, setState] = useState([]);
-//   useEffect(() => {
-//     const fetchState = async () => {
-//         const {data} = await axios.get('/api/pages/shop')
-//         setState(data)
-//     }
-//     fetchState();
-// }, [])
  // FETCH DATA COUNTRIES
  const [countries, setCountries] = useState([]);
  useEffect(() => {
   const fetchCountry = async () => {
-      const {data} = await axios.get('/api/country/')
+      const {data} = await axios.get(`${API_BASE_URL}/api/country/`)
       setCountries(data)
   }
   fetchCountry();
@@ -51,7 +51,7 @@ const Shop = () => {
  const [province, setProvince] = useState([]);
  useEffect(() => {
   const fetchProvince = async () => {
-      const {data} = await axios.get('/api/province/')
+      const {data} = await axios.get(`${API_BASE_URL}/api/province/`)
       setProvince(data)
   }
   fetchProvince();
@@ -60,7 +60,7 @@ const Shop = () => {
  const [branch, setBranch] = useState([]);
  useEffect(() => {
   const fetchBranch = async () => {
-      const {data} = await axios.get('/api/branch/')
+      const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
       setBranch(data)
   }
   fetchBranch();
