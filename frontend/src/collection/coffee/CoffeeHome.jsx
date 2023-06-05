@@ -7,13 +7,14 @@ import {BsFillBagFill} from 'react-icons/bs'
 import React from 'react'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import url from '../../config'
 
 const CoffeeHome = () => {
     
     const [Products, setProducts] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get(`https://thecoffeeserver-vxqs.onrender.com/api/collections/`)
+            const {data} = await axios.get(`${url}/api/collections/`)
             setProducts(data)
         }
         fetchProducts();
