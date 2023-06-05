@@ -1,15 +1,18 @@
-import React from 'react'
 import './chitiet.css'
+
+import {Link, useParams} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
 import CafeImage from '../../images/coffee/sp1.jpg'
-import size from '../../asset/fake-data/size'
-import { useState } from 'react'
+import React from 'react'
+import axios from 'axios'
+import formatProductPrice from '../../Helper'
 import { number } from 'prop-types'
 import productData from '../../asset/fake-data/Product'
-import {Link, useParams} from 'react-router-dom' 
-import axios from 'axios'
-import { useEffect} from 'react'
-import formatProductPrice from '../../Helper'
-import { useSelector, useDispatch } from 'react-redux'
+import size from '../../asset/fake-data/size'
+import { useEffect } from 'react'
+import { useState } from 'react'
+
 const Chitiet = ({match, history}) => { 
   const [Products, setProducts] = useState([]);
     useEffect(() => {
