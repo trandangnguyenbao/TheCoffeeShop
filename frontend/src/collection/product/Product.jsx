@@ -3,7 +3,6 @@ import './product.css'
 import {Link, NavLink, useParams} from 'react-router-dom'
 import { banh, cafeDropdown, cloudfee, hitea, khac, tra } from '../../data'
 
-import API_BASE_URL from '../../config'
 import { AiTwotoneHeart } from 'react-icons/ai'
 import {BsFillBagFill} from 'react-icons/bs'
 import Pagination from '@mui/material/Pagination';
@@ -50,14 +49,14 @@ const Product = () => {
     const [Catalogs, setCaTaLogs] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
+            const {data} = await axios.get('/api/collections/')
             setProducts(data)
         }
         fetchProducts();
     }, [])
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get(`${API_BASE_URL}/api/catalog/`)
+            const {data} = await axios.get('/api/catalog/')
             setCaTaLogs(data)
         }
         fetchCatalogs();
