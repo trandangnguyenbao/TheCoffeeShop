@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
 import PopupDelete from '../../Component/PopupDelete'
 import React from 'react'
+import {Skeleton} from 'antd'
 import Stack from '@mui/material/Stack';
 import axios from 'axios'
 import { useEffect } from 'react'
@@ -91,21 +92,28 @@ const Catalog = () => {
             </tr>
             
                 {
-                    currentItems.map((catalog, index) => {
-                                return (
-                                    <tr>
-                                        <td><p>{index}</p></td>
-                                        <td><p>{catalog.name}</p></td>
-                                        <td><img src={catalog.img} alt="" /></td>
-                                        <td><p><Link to={`/catalog/detail/${catalog.path}`}>Xem Chi Tiết</Link></p></td>
-                                        <td><p>{catalog.discript}</p></td>
-                                        <td>
-                                            <Link className = "update__item" to={`/catalog/${catalog._id}`}>Sửa</Link>
-                                            <Link onClick={() => deleteCatalog(catalog._id)} className = 'delete__item'>Xóa</Link>
-                                        </td>
-                                    </tr>
-                        )
-                    })
+                    (currentItems.length > 0) ? (
+                        currentItems.map((catalog, index) => {
+                                    return (
+                                        <tr>
+                                            <td><p>{index}</p></td>
+                                            <td><p>{catalog.name}</p></td>
+                                            <td><img src={catalog.img} alt="" /></td>
+                                            <td><p><Link to={`/catalog/detail/${catalog.path}`}>Xem Chi Tiết</Link></p></td>
+                                            <td><p>{catalog.discript}</p></td>
+                                            <td>
+                                                <Link className = "update__item" to={`/catalog/${catalog._id}`}>Sửa</Link>
+                                                <Link onClick={() => deleteCatalog(catalog._id)} className = 'delete__item'>Xóa</Link>
+                                            </td>
+                                        </tr>
+                            )
+                        }) 
+                    ) : (
+                        <tr><td colSpan={7}><Skeleton 
+                        paragraph={{
+                            rows: 6,
+                        }}/></td></tr>
+                    )
                 }
         </table>
         <Stack spacing={2}>

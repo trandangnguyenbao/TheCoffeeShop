@@ -2,13 +2,24 @@ import './home.css'
 
 import { API_BASE_URL } from '../config'
 import { Link } from 'react-router-dom'
+import { LoadingOutlined } from '@ant-design/icons'
 import React from 'react'
+import { Spin } from 'antd'
 import axios from 'axios'
 import formatProductPrice from '../Helper'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
 const Home = () => {
+
+  const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 24,
+      }}
+      spin
+    />
+  );
   const [Products, setProducts] = useState([]);
   var number = 0;
     // const [page, setPage] = useState(1);
@@ -87,23 +98,23 @@ const Home = () => {
         </div>
         <div className="container__home--container--item col-lg-4 col-sm-4 col-md-4 col-4 pt-4">
         <Link to = {'/branch/doanhthu'}>
-            <h3>{formatProductPrice(sumWithInitial)}</h3>
+            <h3>{(sumWithInitial) ? formatProductPrice(sumWithInitial) : (<Spin indicator={antIcon} />)}</h3>
             <p>Doanh Thu</p></Link>
         </div>
         <div className="container__home--container--item col-lg-4 col-sm-4 col-md-4 col-4 pt-4">
-        <Link to={'/catalog'}><h3>{Catalogs.length}</h3>
+        <Link to={'/catalog'}><h3>{(Catalogs.length > 0) ? (Catalogs.length) : (<Spin indicator={antIcon} />)}</h3>
             <p>Loại Hàng</p></Link>
         </div>
         <div className="container__home--container--item col-lg-4 col-sm-4 col-md-4 col-4 pt-4">
-        <Link to= {'/order'}><h3>{order.length}</h3>
+        <Link to= {'/order'}><h3>{(order.length > 0) ? (order.length) : (<Spin indicator={antIcon} />)}</h3>
             <p>Đơn Hàng</p></Link>
         </div>
         <div className="container__home--container--item col-lg-4 col-sm-4 col-md-4 col-4 pt-4">
-        <Link to={'/branch'}> <h3>{branch.length}</h3>
+        <Link to={'/branch'}> <h3>{(branch.length > 0) ? (branch.length) : (<Spin indicator={antIcon} />)}</h3>
             <p>Chi Nhánh</p></Link>
         </div>
         <div className="container__home--container--item col-lg-4 col-sm-4 col-md-4 col-4 pt-4">
-        <Link to={'/user'}><h3>{user.length}</h3>
+        <Link to={'/user'}><h3>{(user.length > 0) ? (user.length) : (<Spin indicator={antIcon} />)}</h3>
             <p>Người Dùng</p></Link>
         </div>
       </div>

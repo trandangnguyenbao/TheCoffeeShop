@@ -8,13 +8,6 @@ import UserIcon from '../../images/UserIcon.svg';
 import axios from "axios";
 import { toast } from 'react-toastify';
 
-// import isEmty from 'validator/lib/isEmpty'
-
-
-
-// import {useSelector, useDispatch} from 'react'
-
-
 const Login = () => {
     const history = useNavigate();
 

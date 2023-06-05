@@ -6,6 +6,7 @@ import { API_BASE_URL } from '../../config';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import React from 'react'
+import {Skeleton} from 'antd'
 import Stack from '@mui/material/Stack';
 import axios from 'axios'
 
@@ -78,21 +79,28 @@ const User = () => {
                   </tr>
                   
                       {
-                          currentItems.map((user, index) => {
-                              return (
-                                  <tr key={user._id}>
-                                      <td><p>{index + 1}</p></td>
-                                      <td><p>{user.name}</p></td>
-                                      <td><p>{user.phone}</p></td>
-                                      <td><p>{user.gender}</p></td>
-                                      <td><p>{user.address}</p></td>
-                                      <td className='action'>
-                                          <button className = "update__item"><Link to={`/user/${user._id}`}>Sửa</Link></button>
-                                          <button className = 'delete__item' onClick={() => deleteUser(user._id)}>Xóa</button>
-                                      </td>
-                                  </tr>
-                              )
-                          })
+                        (currentItems.length > 0) ? (
+                            currentItems.map((user, index) => {
+                                return (
+                                    <tr key={user._id}>
+                                        <td><p>{index + 1}</p></td>
+                                        <td><p>{user.name}</p></td>
+                                        <td><p>{user.phone}</p></td>
+                                        <td><p>{user.gender}</p></td>
+                                        <td><p>{user.address}</p></td>
+                                        <td className='action'>
+                                            <button className = "update__item"><Link to={`/user/${user._id}`}>Sửa</Link></button>
+                                            <button className = 'delete__item' onClick={() => deleteUser(user._id)}>Xóa</button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        ) : (
+                            <tr><td colSpan={7}><Skeleton 
+                                paragraph={{
+                                    rows: 6,
+                            }}/></td></tr>
+                        )
                       }
               </table>
               <Stack spacing={2}>

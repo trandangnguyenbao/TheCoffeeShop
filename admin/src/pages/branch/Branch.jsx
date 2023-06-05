@@ -1,15 +1,12 @@
-import '../catalog/catalog.css'
-import './branch.css'
+import '../catalog/catalog.css';
+import './branch.css';
+
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 import { API_BASE_URL } from '../../config';
-import { Link } from 'react-router-dom'
-import Pagination from '@mui/material/Pagination';
-import React from 'react'
-import Stack from '@mui/material/Stack';
-import axios from 'axios'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
+import { Skeleton } from 'antd';
+import axios from 'axios';
 
 const Branch = () => {
     const history = useNavigate();
@@ -132,23 +129,30 @@ const Branch = () => {
                 </tr>
                 <tfoot>
                 {
-                    branch.map((branchs) => {
-                        if (branchs.Province_name == districtId){
-                            return (
-                                <tr>
-                                    <td><p>{branchs.Branch_id}</p></td>
-                                    <td><p>{branchs.name}</p></td>
-                                    <td><img src={branchs.image} alt="" /></td>
-                                    <td><p>{branchs.address}</p></td>
-                                    <td><Link to = {`/branch/${branchs.path}`}>Xem chi Tiết</Link></td>
-                                    <td>
-                                        <Link to={`/branch/update/${branchs._id}`} className = "update__item">Sửa</Link>
-                                        <Link onClick={() => deleteBranch(branchs._id)} className = 'delete__item'>Xóa</Link>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    })
+                    (branch.length > 0) ? (
+                        branch.map((branchs) => {
+                            if (branchs.Province_name == districtId){
+                                return (
+                                    <tr>
+                                        <td><p>{branchs.Branch_id}</p></td>
+                                        <td><p>{branchs.name}</p></td>
+                                        <td><img src={branchs.image} alt="" /></td>
+                                        <td><p>{branchs.address}</p></td>
+                                        <td><Link to = {`/branch/${branchs.path}`}>Xem chi Tiết</Link></td>
+                                        <td>
+                                            <Link to={`/branch/update/${branchs._id}`} className = "update__item">Sửa</Link>
+                                            <Link onClick={() => deleteBranch(branchs._id)} className = 'delete__item'>Xóa</Link>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        })
+                    ) : (
+                        <tr><td colSpan={7}><Skeleton 
+                        paragraph={{
+                            rows: 6,
+                        }}/></td></tr>
+                    )
                 }</tfoot>
                 
             </table>

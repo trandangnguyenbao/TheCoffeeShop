@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { API_BASE_URL } from '../../config'
 import React from 'react'
+import {Skeleton} from 'antd'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
 import { useEffect } from 'react'
@@ -64,20 +65,27 @@ const BranchDetail = ({match}) => {
                     <th>Doanh Thu</th>
                 </tr>
                 <tfoot>{
-                    branch.map((branchs) => {
-                        if (branchs.path === path){
-                            return (
-                                <tr>
-                                    <td><p>{branchs.Branch_id}</p></td>
-                                    <td><p>{branchs.name}</p></td>
-                                    <td><img src={branchs.image} alt="" /></td>
-                                    <td><p>{branchs.staff}</p></td>
-                                    <td><p>{formatProductPrice(branchs.doanhthu)}</p></td>
-                                </tr>
-                            )
-                        }
-                        
-                    })
+                    (branch.length > 0) ? (
+                        branch.map((branchs) => {
+                            if (branchs.path === path){
+                                return (
+                                    <tr>
+                                        <td><p>{branchs.Branch_id}</p></td>
+                                        <td><p>{branchs.name}</p></td>
+                                        <td><img src={branchs.image} alt="" /></td>
+                                        <td><p>{branchs.staff}</p></td>
+                                        <td><p>{formatProductPrice(branchs.doanhthu)}</p></td>
+                                    </tr>
+                                )
+                            }
+                            
+                        })
+                    ) : (
+                        <tr><td colSpan={7}><Skeleton 
+                        paragraph={{
+                            rows: 6,
+                    }}/></td></tr>
+                    )
                 }</tfoot>
             </table>
         </div>

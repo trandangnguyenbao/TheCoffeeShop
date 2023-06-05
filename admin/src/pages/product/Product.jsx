@@ -6,6 +6,7 @@ import { API_BASE_URL } from '../../config';
 import { Link } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
 import React from 'react'
+import {Skeleton} from 'antd'
 import Stack from '@mui/material/Stack';
 import axios from 'axios'
 import formatProductPrice from '../../Helper/index.js'
@@ -93,22 +94,29 @@ const Product = () => {
                 </tr>
                 
                     {
-                         currentItems.map((product, index) => {
-                            return (
-                                <tr>
-                                    <td><p>{index+1}</p></td>
-                                    <td><p>{product.title}</p></td>
-                                    <td><img src={product.img} alt="" /></td>
-                                    <td><p>{formatProductPrice(product.cost)}</p></td>
-                                    <td><p>{product.catalog}</p></td>
-                                    <td><p>{product.descript}</p></td>
-                                    <td>
-                                        <Link className = "update__item" to={`/product/${product._id}`}>Sửa</Link>
-                                        <Link onClick={() => deleteProduct(product._id)} className = 'delete__item'>Xóa</Link>
-                                    </td>
-                                </tr>
-                            )
-                        })
+                        (currentItems.length > 0) ? (
+                            currentItems.map((product, index) => {
+                               return (
+                                   <tr>
+                                       <td><p>{index+1}</p></td>
+                                       <td><p>{product.title}</p></td>
+                                       <td><img src={product.img} alt="" /></td>
+                                       <td><p>{formatProductPrice(product.cost)}</p></td>
+                                       <td><p>{product.catalog}</p></td>
+                                       <td><p>{product.descript}</p></td>
+                                       <td>
+                                           <Link className = "update__item" to={`/product/${product._id}`}>Sửa</Link>
+                                           <Link onClick={() => deleteProduct(product._id)} className = 'delete__item'>Xóa</Link>
+                                       </td>
+                                   </tr>
+                               )
+                           })
+                        ) : (
+                            <tr><td colSpan={7}><Skeleton 
+                                paragraph={{
+                                    rows: 6,
+                                }}/></td></tr>
+                        )
                     }
             </table>
             <Stack spacing={2}>

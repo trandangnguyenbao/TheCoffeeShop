@@ -6,6 +6,7 @@ import { API_BASE_URL } from '../../config';
 import Pagination from '@mui/material/Pagination';
 import Product from '../product/Product'
 import React from 'react'
+import {Skeleton} from 'antd'
 import Stack from '@mui/material/Stack';
 import axios from 'axios'
 import formatProductPrice from '../../Helper/index.js'
@@ -84,30 +85,37 @@ const ProductOfCatalog = ({match}) => {
                     <th>Chức Năng</th>
                 </tr>
                     {
-                        Catalogs.map(catalog => {
-                            if (catalog.path === path) {
-                                return (
-                                    Products.map((Product, index) => {
-                                        if (Product.catalog === catalog.name){
-                                            return (
-                                                <tr>
-                                                    <td><p>{index}</p></td>
-                                                    <td><p>{Product.title}</p></td>
-                                                    <td><img src={Product.img} alt="" /></td>
-                                                    <td><p>{formatProductPrice(Product.cost)}</p></td>
-                                                    <td><p>{Product.catalog}</p></td>
-                                                    <td><p>{Product.descript}</p></td>
-                                                    <td>
-                                                        <Link className = "update__item" to={`/product/${Product._id}`}>Sửa</Link>
-                                                        <Link onClick={() => deleteProduct(Product._id)} className = 'delete__item'>Xóa</Link>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        }
-                                    })
-                                )
-                            }
-                        })
+                        (Catalogs.length > 0 )? (
+                            Catalogs.map(catalog => {
+                                if (catalog.path === path) {
+                                    return (
+                                        Products.map((Product, index) => {
+                                            if (Product.catalog === catalog.name){
+                                                return (
+                                                    <tr>
+                                                        <td><p>{index}</p></td>
+                                                        <td><p>{Product.title}</p></td>
+                                                        <td><img src={Product.img} alt="" /></td>
+                                                        <td><p>{formatProductPrice(Product.cost)}</p></td>
+                                                        <td><p>{Product.catalog}</p></td>
+                                                        <td><p>{Product.descript}</p></td>
+                                                        <td>
+                                                            <Link className = "update__item" to={`/product/${Product._id}`}>Sửa</Link>
+                                                            <Link onClick={() => deleteProduct(Product._id)} className = 'delete__item'>Xóa</Link>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            }
+                                        })
+                                    )
+                                }
+                            })
+                        ) : (
+                            <tr><td colSpan={7}><Skeleton 
+                                paragraph={{
+                                    rows: 6,
+                            }}/></td></tr>
+                        )
                     }
             </table>
         </div>
