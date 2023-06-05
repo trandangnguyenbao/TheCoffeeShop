@@ -3,6 +3,7 @@ import './infomation.css'
 
 import {AiOutlineCloseCircle, AiOutlineFacebook, AiOutlineLink, AiOutlinePlus} from 'react-icons/ai'
 
+import { API_BASE_URL } from '../../config'
 import {AiOutlineNotification} from 'react-icons/ai'
 import {BsFillChatLeftFill} from 'react-icons/bs'
 import {FaRegUserCircle} from 'react-icons/fa'
