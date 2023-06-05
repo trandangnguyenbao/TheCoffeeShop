@@ -1,16 +1,20 @@
-import React from 'react'
 import './teahome.css'
+
 import {Link, NavLink} from 'react-router-dom'
-import { AiTwotoneHeart} from 'react-icons/ai'
+import { useEffect, useState } from 'react'
+
+import { AiTwotoneHeart } from 'react-icons/ai'
 import {BsFillBagFill} from 'react-icons/bs'
+import React from 'react'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
 import formatProductPrice from '../../Helper'
+import url from '../../config'
+
 const TeaHome = () => {
     const [Products, setProducts] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get('/api/collections/')
+            const {data} = await axios.get(`${url}/api/collections/`)
             setProducts(data)
         }
         fetchProducts();

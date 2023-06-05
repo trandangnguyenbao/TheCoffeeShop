@@ -7,6 +7,7 @@ import { AiTwotoneHeart } from 'react-icons/ai'
 import { BsFillBagFill } from 'react-icons/bs'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import url from '../../config'
 
 const Product = () => {
     const [catalog, setCatalog] = useState('Cà Phê Việt Nam')
@@ -30,14 +31,14 @@ const Product = () => {
     const [Catalogs, setCaTaLogs] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get('/api/collections/')
+            const {data} = await axios.get(`${url}/api/collections/`)
             setProducts(data)
         }
         fetchProducts();
     }, [])
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get('/api/catalog/')
+            const {data} = await axios.get(`${url}/api/catalog/`)
             setCaTaLogs(data)
         }
         fetchCatalogs();
