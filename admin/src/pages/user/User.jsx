@@ -1,16 +1,20 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import axios from 'axios'
-import { Link } from 'react-router-dom';
 import './user.css'
+
+import { useEffect, useState } from 'react';
+
+import { API_BASE_URL } from '../../config';
+import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
+
 const User = () => {
     const [user, setUser] = useState([]);
     const [searchApiData, setSearchApiData] = useState([]);
     useEffect(() => {
           const fetchUser = async () => {
-              const {data} = await axios.get('/api/user')
+              const {data} = await axios.get(`${API_BASE_URL}/api/user`)
               setUser(data)
               setSearchApiData(data);
           }
@@ -20,7 +24,7 @@ const User = () => {
     const [value, setValue] = useState();
     const deleteUser = async (id) => {
         console.log(id)
-        let result = await fetch(`/api/user/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/user/${id}`, {
             method: "Delete"
         });
         result = await result.json();

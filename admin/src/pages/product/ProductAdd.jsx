@@ -1,8 +1,10 @@
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+
 // import { set } from 'mongoose';
 
 
@@ -20,7 +22,7 @@ const ProductAdd = () => {
 
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get('/api/cataloges/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/cataloges/`)
             setCaTaLogs(data)
         }
         fetchCatalogs();
@@ -28,7 +30,7 @@ const ProductAdd = () => {
 
     useEffect(() => {
         const fetchCatalogParent = async() => {
-            const {data} = await axios.get('/api/catalog/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/catalog/`)
             setCatalogParent(data)
         }
         fetchCatalogParent();
@@ -46,13 +48,9 @@ const ProductAdd = () => {
         setImageSlug(imageSlug)
         var imageValue = document.querySelector("input[name = 'image']").value;
         // console.log(imageValue);
-        setImage(imageValue);
-        // console.log(image)
+        setImage(imageValue)
     }
     
-    console.log(image)
-    // var images = imageValue
-    // setImage(images);
     const handleSubmit =  ()=>{
         const path_name = nameProduct.replace(/ /g,'-');
         const data = {
@@ -65,7 +63,7 @@ const ProductAdd = () => {
             descript: description,
         }
 
-        axios.post('/api/collections/',data).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/collections/`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {

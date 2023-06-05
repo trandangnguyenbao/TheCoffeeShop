@@ -1,7 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+
+import { API_BASE_URL } from '../../config'
+import React from 'react'
+import axios from 'axios'
+import { useState } from 'react'
+
 const OrderUpdate = () => {
   let {id} = useParams()
   const history = useNavigate();
@@ -13,7 +16,7 @@ const OrderUpdate = () => {
     }
 
     // console.log(id)
-    axios.put(`/api/order/update/${id}`,data).then(function (response) {
+    axios.put(`${API_BASE_URL}/api/order/update/${id}`,data).then(function (response) {
         console.log(response);
         console.log(id)
       })

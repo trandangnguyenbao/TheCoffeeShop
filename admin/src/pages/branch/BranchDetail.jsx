@@ -1,12 +1,15 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
 import '../catalog/catalog.css'
-import { useState } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react'
 import './branch.css'
-import { useNavigate } from 'react-router-dom';
+
+import { Link, useParams } from 'react-router-dom'
+
+import { API_BASE_URL } from '../../config'
+import React from 'react'
+import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const BranchDetail = ({match}) => {
     const {path} = useParams(); 
@@ -15,7 +18,7 @@ const BranchDetail = ({match}) => {
    const [countries, setCountries] = useState([]);
    useEffect(() => {
     const fetchCountry = async () => {
-        const {data} = await axios.get('/api/country/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/country/`)
         setCountries(data)
     }
     fetchCountry();
@@ -24,7 +27,7 @@ const BranchDetail = ({match}) => {
    const [province, setProvince] = useState([]);
    useEffect(() => {
     const fetchProvince = async () => {
-        const {data} = await axios.get('/api/province/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/province/`)
         setProvince(data)
     }
     fetchProvince();
@@ -33,7 +36,7 @@ const BranchDetail = ({match}) => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();

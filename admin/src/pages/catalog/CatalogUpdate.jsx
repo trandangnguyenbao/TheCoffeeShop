@@ -1,8 +1,10 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react'
 
 const CatalogUpdate = () => {
     let {id} = useParams()
@@ -24,8 +26,7 @@ const CatalogUpdate = () => {
             img: image
         }
 
-        console.log(id)
-        axios.put(`/api/cataloges/update/${id}`,data).then(function (response) {
+        axios.put(`${API_BASE_URL}/api/cataloges/update/${id}`,data).then(function (response) {
             console.log(response);
             console.log(id)
           })

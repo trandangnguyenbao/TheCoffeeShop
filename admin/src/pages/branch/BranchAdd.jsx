@@ -1,8 +1,9 @@
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const BranchAdd = () => {
     const history = useNavigate();
@@ -18,7 +19,7 @@ const BranchAdd = () => {
    const [countries, setCountries] = useState([]);
    useEffect(() => {
     const fetchCountry = async () => {
-        const {data} = await axios.get('/api/country/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/country/`)
         setCountries(data)
     }
     fetchCountry();
@@ -27,7 +28,7 @@ const BranchAdd = () => {
    const [province, setProvince] = useState([]);
    useEffect(() => {
     const fetchProvince = async () => {
-        const {data} = await axios.get('/api/province/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/province/`)
         setProvince(data)
     }
     fetchProvince();
@@ -37,7 +38,7 @@ const BranchAdd = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
@@ -65,7 +66,7 @@ const BranchAdd = () => {
             image: image
         }
 
-        axios.post('/api/branch/',data).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/branch/`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {

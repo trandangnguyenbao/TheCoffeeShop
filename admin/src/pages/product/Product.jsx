@@ -1,13 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import './product.css'
-import { useState, useMemo } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react'
-import formatProductPrice from '../../Helper/index.js'
-import { useNavigate } from 'react-router-dom';
+
+import { useMemo, useState } from 'react'
+
+import { API_BASE_URL } from '../../config';
+import { Link } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
+import formatProductPrice from '../../Helper/index.js'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Product = () => {
     const [Products, setProducts] = useState([]);
@@ -18,7 +21,7 @@ const Product = () => {
     
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get('/api/collections/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
             setProducts(data);
             setSearchApiData(data);
         }
@@ -42,7 +45,7 @@ const Product = () => {
 
     const deleteProduct = async (id) => {
         console.log(id)
-        let result = await fetch(`/api/collections/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/collections/${id}`, {
             method: "Delete"
         });
         result = await result.json();

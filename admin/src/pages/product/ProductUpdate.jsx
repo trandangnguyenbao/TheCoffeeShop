@@ -1,8 +1,10 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react'
 
 const ProductUpdate = () => {
     let {id} = useParams()
@@ -23,7 +25,7 @@ const ProductUpdate = () => {
     // const [pageSize] = useState(8);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get('/api/collections/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
             setProducts(data)
         }
         fetchProducts();
@@ -31,7 +33,7 @@ const ProductUpdate = () => {
 
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get('/api/cataloges/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/cataloges/`)
             setCaTaLogs(data)
         }
         fetchCatalogs();
@@ -39,7 +41,7 @@ const ProductUpdate = () => {
 
     useEffect(() => {
         const fetchCatalogParent = async() => {
-            const {data} = await axios.get('/api/catalog/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/catalog/`)
             setCatalogParent(data)
         }
         fetchCatalogParent();
@@ -74,7 +76,7 @@ const ProductUpdate = () => {
         }
 
         // console.log(id)
-        axios.put(`/api/collections/update/${id}`,data).then(function (response) {
+        axios.put(`${API_BASE_URL}/api/collections/update/${id}`,data).then(function (response) {
             console.log(response);
             console.log(id)
           })

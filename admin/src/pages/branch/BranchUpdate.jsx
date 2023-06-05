@@ -1,8 +1,10 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react'
 
 const BranchUpdate = () => {
     let {id} = useParams()
@@ -19,7 +21,7 @@ const BranchUpdate = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
     }
     fetchBranch();
@@ -48,7 +50,7 @@ const BranchUpdate = () => {
         }
 
         // console.log(id)
-        axios.put(`/api/branch/update/${id}`,data).then(function (response) {
+        axios.put(`${API_BASE_URL}/api/branch/update/${id}`,data).then(function (response) {
             console.log(response);
             console.log(id)
           })

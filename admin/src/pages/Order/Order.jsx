@@ -1,17 +1,21 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import axios from 'axios'
-import { Link } from 'react-router-dom';
 import '../user/user.css'
+
+import { useEffect, useState } from 'react';
+
+import { API_BASE_URL } from '../../config';
+import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
 import formatProductPrice from '../../Helper'
+
 const Order = () => {
     const [order, setOrder] = useState([]);
     const [searchApiData, setSearchApiData] = useState([]);
     useEffect(() => {
           const fetchOrder = async () => {
-              const {data} = await axios.get('/api/order/')
+              const {data} = await axios.get(`${API_BASE_URL}/api/order/`)
               setOrder(data)
               setSearchApiData(data);
           }
@@ -21,7 +25,7 @@ const Order = () => {
       const [user, setUser] = useState([]);
     useEffect(() => {
           const fetchUser = async () => {
-              const {data} = await axios.get('/api/user')
+              const {data} = await axios.get(`${API_BASE_URL}/api/user`)
               setUser(data)
           }
           fetchUser();
@@ -42,7 +46,7 @@ const Order = () => {
 
     const deleteOrder = async (id) => {
         console.log(id)
-        let result = await fetch(`/api/Order/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/Order/${id}`, {
             method: "Delete"
         });
         result = await result.json();
@@ -94,7 +98,7 @@ const Order = () => {
                                         user.map(user => {
                                             if (user.phone === order.name){
                                                 return (
-                                                    <td><p>{user.address}</p></td>
+                                                    <td><p>{user.address ? user.address : "Chưa có địa chỉ nhận hàng"}</p></td>
                                                 )
                                             }
                                         })

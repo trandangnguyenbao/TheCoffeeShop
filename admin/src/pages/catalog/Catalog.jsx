@@ -1,6 +1,7 @@
 import './catalog.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { API_BASE_URL } from '../../config';
 import { Link } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination';
 import PopupDelete from '../../Component/PopupDelete'
@@ -17,7 +18,7 @@ const Catalog = () => {
     const [searchApiData, setSearchApiData] = useState([]);
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get('/api/cataloges/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/cataloges/`)
             setCaTaLogs(data)
             setSearchApiData(data);
         }
@@ -27,7 +28,7 @@ const Catalog = () => {
     const [Products, setProducts] = useState([]);
     useEffect(() => {
         const fetchProducts = async () => {
-            const {data} = await axios.get('/api/collections/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/collections/`)
             setProducts(data)
         }
         fetchProducts();
@@ -47,7 +48,7 @@ const Catalog = () => {
     };
 
     const deleteCatalog = async (id) => {
-        let result = await fetch(`/api/cataloges/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/cataloges/${id}`, {
             method: "Delete"
         });
         result = await result.json();

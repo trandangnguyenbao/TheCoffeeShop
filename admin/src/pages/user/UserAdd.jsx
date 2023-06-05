@@ -1,8 +1,9 @@
+import { API_BASE_URL } from '../../config';
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const UserAdd = () => {
     const history = useNavigate();
@@ -23,7 +24,7 @@ const UserAdd = () => {
             isAdmin: isAdmin
         }
 
-        axios.post('/api/user/',data).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/user/`,data).then(function (response) {
             console.log(response);
           })
           .catch(function (error) {

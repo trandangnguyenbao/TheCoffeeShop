@@ -1,10 +1,13 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import axios from 'axios'
-import { Link, useParams } from 'react-router-dom';
 import '../user/user.css'
+
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import { API_BASE_URL } from '../../config';
 import Pagination from '@mui/material/Pagination';
+import React from 'react'
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
 import formatProductPrice from '../../Helper';
 
 const OrderDetail = () => {
@@ -13,20 +16,11 @@ const OrderDetail = () => {
     // const [user, setUser] = useState([]);
     useEffect(() => {
           const fetchOrderDetail = async () => {
-              const {data} = await axios.get('/api/orderdetail/')
+              const {data} = await axios.get(`${API_BASE_URL}/api/orderdetail/`)
               setOrderDetail(data)
           }
           fetchOrderDetail();
       }, [])
-    // const [page, setPage] = useState(1);
-    // const [pageSize] = useState(8);
-    // const indexOfLastItem = page*pageSize;
-    // const indexOfFirstItem = indexOfLastItem - pageSize;
-    // const currentItems = orderDetail.slice(indexOfFirstItem,indexOfLastItem);
-
-    // const handlePage = (e,value)=>{
-    //     setPage(value)
-    // }
     return (
       <div className="container container__type">
               <h1 className="container__item">Chi Tiết Đơn Hàng</h1>

@@ -1,13 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import '../catalog/catalog.css'
-import { useState } from 'react'
+import './branch.css'
+
+import { API_BASE_URL } from '../../config';
+import { Link } from 'react-router-dom'
+import Pagination from '@mui/material/Pagination';
+import React from 'react'
+import Stack from '@mui/material/Stack';
 import axios from 'axios'
 import { useEffect } from 'react'
-import './branch.css'
 import { useNavigate } from 'react-router-dom';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import { useState } from 'react'
 
 const Branch = () => {
     const history = useNavigate();
@@ -29,7 +31,7 @@ const Branch = () => {
    const [countries, setCountries] = useState([]);
    useEffect(() => {
     const fetchCountry = async () => {
-        const {data} = await axios.get('/api/country/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/country/`)
         setCountries(data)
     }
         fetchCountry();
@@ -38,7 +40,7 @@ const Branch = () => {
    const [province, setProvince] = useState([]);
    useEffect(() => {
     const fetchProvince = async () => {
-        const {data} = await axios.get('/api/province/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/province/`)
         setProvince(data)
     }
     fetchProvince();
@@ -47,7 +49,7 @@ const Branch = () => {
    const [branch, setBranch] = useState([]);
    useEffect(() => {
     const fetchBranch = async () => {
-        const {data} = await axios.get('/api/branch/')
+        const {data} = await axios.get(`${API_BASE_URL}/api/branch/`)
         setBranch(data)
         setSearchApiData(data);
     }
@@ -58,7 +60,7 @@ const Branch = () => {
     // DELETE 
     const deleteBranch = async (id) => {
         console.log(id)
-        let result = await fetch(`/api/branch/${id}`, {
+        let result = await fetch(`${API_BASE_URL}/api/branch/${id}`, {
             method: "Delete"
         });
         result = await result.json();

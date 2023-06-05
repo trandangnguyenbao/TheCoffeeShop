@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../../config';
 import React from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify';
@@ -24,7 +25,7 @@ const CatalogAdd = () => {
             img: image
         }
 
-        axios.post('/api/cataloges/',data).then(function (response) {
+        axios.post(`${API_BASE_URL}/api/cataloges/`,data).then(function (response) {
             toast.success("Thêm loại hàng thành công!")
           })
           .catch(function (error) {
