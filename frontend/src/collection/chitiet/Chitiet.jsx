@@ -94,27 +94,40 @@ const Chitiet = ({match, history}) => {
         <div className="container__description col-lg-12 col-md-12 col-sm-12 col-12">
              <div className="container__description--product col-lg-12 col-md-12 col-sm-12 col-12">
                   <h3>Mô Tả Sản Phẩm</h3>
-                  {Products.map((product) => {
+                  {
+                    (Products.length > 0) ? (
+                    Products.map((product) => {
                     if (product.path_name === path_name){
                     return (
                         <p>{product.descript}</p>
                     )}
-                    })}
+                    })) : (
+                      <Skeleton paragraph={{
+                        rows: 4,
+                      }}/>
+                    )
+                  }
              </div>
              <hr />
              <div className="container__description--relate">
                   <h3>Sản phẩm liên quan</h3>
                   <div className="container__description--relate--product">
                     {
-                      productData.getProducts(6).map((item, index) => {
-                        return (
-                          <div className="description--relate--product--item col-lg-2 col-md-3 col-sm-6 col-6">
-                          <Link to={`/product/${item.path_name}`}><img src={item.img} alt="" />
-                          <p>{item.title}</p>
-                          <span>{item.price}</span></Link>
-                        </div>
-                        )
-                      })
+                      (Products.length > 0) ? (
+                        productData.getProducts(6).map((item, index) => {
+                          return (
+                            <div className="description--relate--product--item col-lg-2 col-md-3 col-sm-6 col-6">
+                            <Link to={`/product/${item.path_name}`}><img src={item.img} alt="" />
+                            <p>{item.title}</p>
+                            <span>{item.price}</span></Link>
+                          </div>
+                          )
+                        })
+                      ) : (
+                        <Skeleton paragraph={{
+                          rows: 4,
+                        }}/>
+                      )
                     }
                   </div>
              </div>

@@ -72,7 +72,7 @@ const Account = () => {
             <div className="container__accountpage--contain--item">
                 <form action="">
                     {
-                        (user) ? (
+                        (user.length > 0) ? (
                             user.map((user) => {
                                 if (user.phone === userInfo.phone){
                                     return (

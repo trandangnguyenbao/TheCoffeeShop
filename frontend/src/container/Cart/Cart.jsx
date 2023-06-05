@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { API_BASE_URL } from '../../config'
 import {AiOutlineHome} from 'react-icons/ai'
 import {BsFillChatLeftFill} from 'react-icons/bs'
+import Empty from '../../images/empty-cart.png'
 import {GrFormNext} from 'react-icons/gr'
 import {Link} from 'react-router-dom'
 import OrderData from '../../asset/fake-data/Order'
@@ -174,7 +175,10 @@ const Cart = (props) => {
                             })
                         ) : (
                             <tr>
-                                <td colSpan={6} style={{textAlign: "center", height: "auto"}}>Đơn hàng trống</td>
+                                <td colSpan={6} style={{textAlign: "center", height: "auto"}}>
+                                    <img style={{height:"150px", width: "150px"}} src={Empty} /> <br />
+                                    <p>Đơn hàng trống</p>
+                                </td>
                             </tr>
                         )
                         }
