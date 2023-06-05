@@ -1,5 +1,4 @@
 import Catalog from './data/Catalog.js';
-import ImportData from "./DataImport.js";
 import StaffRoute from "./Routes/StaffRouter.js";
 import branchRoute from "./Routes/BranchRouter.js";
 import catalogRoute from "./Routes/CatalogRouter.js";
@@ -19,6 +18,27 @@ import provinceRoute from "./Routes/ProvinceRouter.js";
 import stateRoute from './Routes/StateRouter.js'
 import storyRoute from "./Routes/StoryRouter.js";
 import userRoute from './Routes/userRouter.js'
+
+// import ImportData from "./DataImport.js";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import Products from "./data/ProductForCatalog.js";
 
@@ -51,8 +71,8 @@ const app = express();
 app.use(express.json())
 
 // API 
-app.use('/api/import', ImportData);
-// Product By Catalog Path
+// app.use('/api/import', ImportData);
+// // Product By Catalog Path
 app.use('/api/collections', productRoute)
 // Get Product By CATALOG
 app.use('/api/catalog', catalogRoute)

@@ -5,7 +5,6 @@ import express from 'express'
 import genarataToken from '../utils/genarateToken.js'
 import mongoose from 'mongoose'
 import protect from '../Middleware/AuthMiddleware.js'
-import {toast} from 'react-toastify'
 
 // import fildeUpLoad from require("express-fileupload")
 // import users from './data/user.js';
@@ -63,7 +62,6 @@ userRoute.post("/",(req,res)=>{
       return user
         .save()
         .then((newUser) => {
-            toast.success("Tạo tài khoản thành công!")
           return res.status(201).json({
             success: true,
             message: 'New cause created successfully',
@@ -71,7 +69,6 @@ userRoute.post("/",(req,res)=>{
           });
         })
         .catch((error) => {
-            toast.error("Tạo tài khoản thất bại!")
           res.status(500).json({
             success: false,
             message: 'Server error. Please try again.',
