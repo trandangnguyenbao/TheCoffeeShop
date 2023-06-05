@@ -1,25 +1,47 @@
-import express from "express";
-// import Products from "./data/ProductForCatalog.js";
 import Catalog from './data/Catalog.js';
-import dotenv from 'dotenv';
-import connectDatabase from "./config/MongoDb.js";
 import ImportData from "./DataImport.js";
-import productRoute from "./Routes/ProductRoutes.js";
+import StaffRoute from "./Routes/StaffRouter.js";
+import branchRoute from "./Routes/BranchRouter.js";
 import catalogRoute from "./Routes/CatalogRouter.js";
+import catalogesRoute from "./Routes/CatalogesRouter.js";
+import connectDatabase from "./config/MongoDb.js";
+import countryRoute from "./Routes/CountryRouter.js";
+import dotenv from 'dotenv';
+import express from "express";
+import orderBranchDetailRoute from "./Routes/OrderBranchDetailRouter.js";
+import orderBranchRoute from "./Routes/OrderBranchRouter.js";
+import orderDetailRoute from "./Routes/OrderDetailRouter.js";
+import orderRoute from "./Routes/RouterOrder.js";
+import orderTableRoute from "./Routes/OrderTableRouter.js";
 import productDetailRoute from "./Routes/ProductDetailRouter.js";
+import productRoute from "./Routes/ProductRoutes.js";
+import provinceRoute from "./Routes/ProvinceRouter.js";
 import stateRoute from './Routes/StateRouter.js'
 import storyRoute from "./Routes/StoryRouter.js";
 import userRoute from './Routes/userRouter.js'
-import catalogesRoute from './Routes/catalogesRouter.js'
-import branchRoute from "./Routes/BranchRouter.js";
-import countryRoute from "./Routes/CountryRouter.js";
-import provinceRoute from "./Routes/ProvinceRouter.js";
-import orderRoute from "./Routes/RouterOrder.js";
-import orderDetailRoute from "./Routes/OrderDetailRouter.js";
-import orderTableRoute from "./Routes/OrderTableRouter.js";
-import StaffRoute from "./Routes/StaffRouter.js";
-import orderBranchRoute from "./Routes/OrderBranchRouter.js";
-import orderBranchDetailRoute from "./Routes/OrderBranchDetailRouter.js";
+
+// import Products from "./data/ProductForCatalog.js";
+
+
+
+
+
+
+
+
+
+
+// import catalogesRoute from './Routes/catalogesRouter.js'
+
+
+
+
+
+
+
+
+
+
 // import productDetailRoute from "./Routes/ProductDetailRouter.js";
 // import catalogRoute from "./Routes/CatalogRouter.js";
 

@@ -1,4 +1,3 @@
-import Cataloges from '../Models/Cataloges.js'
 import Catalogoes from '../Models/CatalogMolder.js'
 import asyncHandler from 'express-async-handler'
 import express from 'express'
