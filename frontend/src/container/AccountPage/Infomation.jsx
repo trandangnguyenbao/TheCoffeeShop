@@ -1,18 +1,20 @@
-import React from 'react'
 import './account.css'
 import './infomation.css'
-import UserIcon from '../../images/UserIcon.svg'
-import {FaRegUserCircle} from 'react-icons/fa'
+
+import {AiOutlineCloseCircle, AiOutlineFacebook, AiOutlineLink, AiOutlinePlus} from 'react-icons/ai'
+
 import {AiOutlineNotification} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import {AiOutlineFacebook, AiOutlineLink, AiOutlinePlus, AiOutlineCloseCircle} from 'react-icons/ai'
-import {SiZalo} from 'react-icons/si'
 import {BsFillChatLeftFill} from 'react-icons/bs'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import {FaRegUserCircle} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import React from 'react'
+import {SiZalo} from 'react-icons/si'
+import UserIcon from '../../images/UserIcon.svg'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
-import { useNavigate} from 'react-router-dom';
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 const Infomation = () => {
     const history = useNavigate();
@@ -26,7 +28,7 @@ const Infomation = () => {
     const [user, setUser] = useState([]);
     useEffect(() => {
           const fetchUser = async () => {
-              const {data} = await axios.get('/api/user')
+              const {data} = await axios.get(`${API_BASE_URL}/api/user`)
               setUser(data)
           }
           fetchUser();

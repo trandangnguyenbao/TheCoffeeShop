@@ -38,7 +38,7 @@ const Product = () => {
     }, [])
     useEffect(() => {
         const fetchCatalogs = async() => {
-            const {data} = await axios.get('/api/catalog/')
+            const {data} = await axios.get(`${API_BASE_URL}/api/catalog/`)
             setCaTaLogs(data)
         }
         fetchCatalogs();

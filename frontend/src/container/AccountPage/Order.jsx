@@ -1,17 +1,21 @@
-import React from 'react'
 import './account.css'
-import UserIcon from '../../images/UserIcon.svg'
-import {FaRegUserCircle} from 'react-icons/fa'
+
+import {AiOutlineCloseCircle, AiOutlineFacebook, AiOutlineLink, AiOutlinePlus} from 'react-icons/ai'
+
+import { API_BASE_URL } from '../../config'
 import {AiOutlineNotification} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import {AiOutlineFacebook, AiOutlineLink, AiOutlinePlus, AiOutlineCloseCircle} from 'react-icons/ai'
-import {SiZalo} from 'react-icons/si'
 import {BsFillChatLeftFill} from 'react-icons/bs'
-import { useNavigate} from 'react-router-dom';
-import { useEffect } from 'react'
-import { useState } from 'react'
+import {FaRegUserCircle} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import React from 'react'
+import {SiZalo} from 'react-icons/si'
+import UserIcon from '../../images/UserIcon.svg'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+
 const Order = () => {
     const history = useNavigate();
     const [userName, setUserName] = useState('');
@@ -26,7 +30,7 @@ const Order = () => {
     const [order, setOrder] = useState([]);
     useEffect(() => {
           const fetchOrder = async () => {
-              const {data} = await axios.get('/api/order/')
+              const {data} = await axios.get(`${API_BASE_URL}/api/order/`)
               setOrder(data)
           }
           fetchOrder();
