@@ -30,7 +30,7 @@ const TeaHome = () => {
                     Products.map((product,index) => {
                         if(product.catalog == 'Trà Tại Nhà'){
                             return (
-                                <div className="container__producthome--child col-lg-3 col-md-4 col-sm-6 col-6  pt-3 ">
+                                <div className="container__producthome--child col-lg-3 col-md-4 col-sm-6 col-6  pt-3 px-2">
                                     <Link to = {`/product/${product.path_name}`}><img src={product.img} alt="" className="container__producthome--item" />
                                         <ul className='producthome__child-icon'>
                                             <li className="producthome__child-icon">

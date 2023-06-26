@@ -36,7 +36,7 @@ const Products = [
         title: 'Cà Phê Rang Xay Original 1 250g', 
         path_name: 'ca-phe-rang-xay',
         cost: '60.000 đ', 
-        image01: require('../../images/house/sp5.jpg'),
+        img: require('../../images/house/sp5.jpg'),
         catalog: 'Cà phê tại nhà',
         catalogParent: 'Tại nhà'
     }, 

@@ -38,8 +38,8 @@ li.container__product--menu a{
 
 li.container__product--menu a.active{
     color: var(--primary--text-hover);
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 li.product__menu--child{
@@ -286,6 +286,9 @@ select.container__product--menu{
         font-weight: 500;
     }
 
+    .container__product--item {
+        padding-top: 1rem;
+    }
     select.container__product--menu option{
         background-color: white;
     }

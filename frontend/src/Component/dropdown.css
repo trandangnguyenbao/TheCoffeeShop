@@ -61,15 +61,6 @@ a.has-child{
    padding-bottom: 40px
 }
 
-/* a.has-child::after{
-    content: '';
-    padding: 0 20px 40px 0px;
-}
-a.has-child::before{
-    content: '';
-    padding: 0 0px 40px 0px;
-} */
-
 
 
 

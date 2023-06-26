@@ -1,10 +1,29 @@
-
-
 .signup{
-   padding: 2rem 20%;
+   height: auto;
+   width: auto;
 }
-.login{
-   padding: 2rem 25%;
+
+.signup__container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 5rem 0;
+}
+
+.signup__container .login {
+    /* max-height: 500px; */
+    height: auto;
+    max-width: 450px;
+    position: relative;
+}
+
+.signup__container .signups{
+    height: auto;
+    max-width: 550px;
+    position: relative;
 }
 
 .container__signup{
@@ -95,10 +114,7 @@
 	visibility: visible;
 }
 
-.submit{
-    padding: 0 20%;
-}
-.loginsubmit{
+.loginsubmit, .submit{
     padding: 0 15px;
 }
 
@@ -113,6 +129,7 @@
     color: #fff;
     font-weight: 600;
     font-size: 17px;
+    border-radius: 6px;
 }
 
 .loginFrom{
@@ -133,9 +150,9 @@
     color: #000;
     font-size: 15px;
     font-weight: 600;
-    /* padding-left: 27%; */
-    margin: 0;
-    padding: 0 0 1rem 27%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 span a{
@@ -147,7 +164,7 @@ span a{
     height: 40px;
     margin: 1rem 0;
     text-align: center;
-    /* align-items: center; */
+    border-radius: 6px;
     width: 100%;
     background-color: var(--primary--text-hover);
     max-width: 100%;

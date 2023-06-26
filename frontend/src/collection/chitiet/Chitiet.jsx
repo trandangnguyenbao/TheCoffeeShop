@@ -19,6 +19,14 @@ const Chitiet = ({match, history}) => {
         }
         fetchProducts();
     }, [])
+    const [Catalogs, setCaTaLogs] = useState([]);
+    useEffect(() => {
+        const fetchCatalogs = async() => {
+            const {data} = await axios.get(`${API_BASE_URL}/api/cataloges/`)
+            setCaTaLogs(data)
+        }
+        fetchCatalogs();
+    }, [])
   const {path_name} = useParams(); 
   const [active, setActive] = useState(null);
   let itemSize = document.querySelector('li.item__size--select')
@@ -55,31 +63,40 @@ const Chitiet = ({match, history}) => {
   return (
     <div className="container container__detail col-lg-12 col-md-12 col-sm-12 col-12">
         {
-          (Products.length > 0) ? (
+          (Products.length > 0 && Catalogs.length > 0) ? (
             Products.map((product) => {
               product.quantity = 1
               if (product.path_name === path_name){
+                let categories = Catalogs.find(item => item.name == product.catalog)
                 return(
-                  <div className="container__detail--item col-lg-12 col-md-12 col-sm-12 col-12">
-                  <div className="detail__item--child col-lg-5 col-md-12 col-sm-12 col-12">
-                      <img src={product.img} alt="" className="item__child--large" />
-                      <img src={product.img} alt="" className="item__child--small" />
-                  </div>
-                  <div className="detail__item--child col-lg-7 col-md-12 col-sm-12 col-12">
-                      <h2 className="detail__item--title">{product.title}</h2>
-                      <h2 className="detail__item--cost">{formatProductPrice(product.cost) || formatProductPrice(product.cost = costAfterAdd)}</h2>
-                    <div className="detail__item--amount">
-                      <p>Số Lượng: </p>
-                        <input type="number" value= {product.quantity} name='quantity' min = '1' max = '100' onChange={(e) => setSoluong(e.target.value)}/>
+                  <>
+                    <nav aria-label="breadcrumb" className='breakcrum'>
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><Link to={"/"}>Trang chủ</Link></li>
+                        <li class="breadcrumb-item"><Link to={`/collections/${categories.path}`}>{product.catalog}</Link></li>
+                        <li class="breadcrumb-item active" aria-current="page">{product.title}</li>
+                      </ol>
+                    </nav>
+                    <div className="container__detail--item col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="detail__item--child col-lg-5 col-md-12 col-sm-12 col-12">
+                        <img src={product.img} alt="" className="item__child--large" />
+                        <img src={product.img} alt="" className="item__child--small" />
                     </div>
-                    <div className="detail__item--descript">
-                      <p>Mô Tả Sản Phẩm</p>
-                      <span>{product.descript}</span>
+                    <div className="detail__item--child col-lg-7 col-md-12 col-sm-12 col-12">
+                        <h2 className="detail__item--title">{product.title}</h2>
+                        <h2 className="detail__item--cost">{formatProductPrice(product.cost) || formatProductPrice(product.cost = costAfterAdd)}</h2>
+                      <div className="detail__item--amount">
+                        <p>Số Lượng: </p>
+                        <input type="number" defaultValue= {product.quantity} name='quantity' min = '1' max = '100' onChange={(e) => setSoluong(e.target.value)}/>
+                      </div>
+                      <div className="detail__item--descript">
+                        <p>Mô Tả Sản Phẩm</p>
+                        <span>{product.descript}</span>
+                      </div>
+                      <Link to={'/cart'}><button onClick ={() => dispatch({type: "ADD", payload: product})}>Thêm vào giỏ hàng</button></Link>
                     </div>
-                    <button onClick ={() => dispatch({type: "ADD", payload: product})}>Thêm vào giỏ hàng</button>   
-                    {/* <button onClick ={addToCartHandle}>Thêm vào giỏ hàng</button>    */}
-                  </div>
-              </div>
+                    </div>  
+                  </>
                 )
               }
             })  
@@ -93,7 +110,7 @@ const Chitiet = ({match, history}) => {
         <hr />
         <div className="container__description col-lg-12 col-md-12 col-sm-12 col-12">
              <div className="container__description--product col-lg-12 col-md-12 col-sm-12 col-12">
-                  <h3>Mô Tả Sản Phẩm</h3>
+                  <h3 style={{fontWeight: "bolder", fontSize: "24px"}}>Mô Tả Sản Phẩm</h3>
                   {
                     (Products.length > 0) ? (
                     Products.map((product) => {
@@ -110,13 +127,13 @@ const Chitiet = ({match, history}) => {
              </div>
              <hr />
              <div className="container__description--relate">
-                  <h3>Sản phẩm liên quan</h3>
+                  <h3 style={{fontWeight: "bolder", fontSize: "24px"}}>Sản phẩm liên quan</h3>
                   <div className="container__description--relate--product">
                     {
                       (Products.length > 0) ? (
                         productData.getProducts(6).map((item, index) => {
                           return (
-                            <div className="description--relate--product--item col-lg-2 col-md-3 col-sm-6 col-6">
+                            <div className="description--relate--product--item col-lg-2 col-md-3 col-sm-6 col-6 pb-3 px-2">
                             <Link to={`/product/${item.path_name}`}><img src={item.img} alt="" />
                             <p>{item.title}</p>
                             <span>{item.price}</span></Link>

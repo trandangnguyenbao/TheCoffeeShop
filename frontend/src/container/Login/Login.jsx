@@ -31,7 +31,6 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 }
             }
-
             setLoading(true)
 
             const { data } = await axios.post(`${API_BASE_URL}/api/user/login`, {
@@ -46,37 +45,39 @@ const Login = () => {
     }
   return (
     <section id='signup'>
-        <div className="container login">
-            <div className='container__signup'>
-            <div className="container__signup--header">
-                <img src={UserIcon} alt="" />
-                <h4>Đăng Nhập Tài Khoản</h4>
-            </div>
-            <div className="container__signup--contain">
-                {error && <Message variant='danger'>{error}</Message>}
-                <form action="" id='form' onSubmit={submitHandler}>
-                    <div class="form-control">
-                        <label >Số điện thoại: </label>
-                        <input type="text" placeholder="Nhập số điện thoại" id="phone" autocomplete="username"
-                        value={phone} onChange = {(e) => setPhone(e.target.value)} />
-                    </div>
-                    <div class="form-control">
-                        <label >Password: </label>
-                        <input type="password" name="" id="password" autocomplete="current-password"
-                        onChange = {(e) => setPassWord(e.target.value)}/>
-                    </div>   
-                    <div className="loginFrom">
-                        <div className="loginForm--duytri">
-                            <input type="checkbox" name="" id="" />
-                            <label htmlFor="">Duy trì đăng nhập</label>
+        <div className="signup__container">
+            <div className="container login">
+                <div className='container__signup'>
+                <div className="container__signup--header">
+                    <img src={UserIcon} alt="" />
+                    <h4>Đăng Nhập Tài Khoản</h4>
+                </div>
+                <div className="container__signup--contain">
+                    {error && <Message variant='danger'>{error}</Message>}
+                    <form action="" id='form' onSubmit={submitHandler}>
+                        <div class="form-control">
+                            <label >Số điện thoại: </label>
+                            <input type="text" placeholder="Nhập số điện thoại" id="phone" autocomplete="username"
+                            value={phone} onChange = {(e) => setPhone(e.target.value)} />
                         </div>
-                        <a href="">Quên mật khẩu</a>
-                    </div>       
+                        <div class="form-control">
+                            <label >Password: </label>
+                            <input type="password" placeholder='Nhập mật khẩu' name="" id="password" autocomplete="current-password"
+                            onChange = {(e) => setPassWord(e.target.value)}/>
+                        </div>   
+                        <div className="loginFrom">
+                            <div className="loginForm--duytri">
+                                <input type="checkbox" name="" id="" />
+                                <label htmlFor="">Duy trì đăng nhập</label>
+                            </div>
+                            <a href="">Quên mật khẩu</a>
+                        </div>       
                         <div className='loginsubmit'><button type='submit' className='loginForm' >Đăng Nhập Tài Khoản</button></div>
-                    <span>Bạn chưa có tài khoản? <Link to ='/account/sign-up'>Đăng Ký</Link></span>
-                </form>
+                        <span>Bạn chưa có tài khoản? <Link to ='/account/sign-up'>Đăng Ký</Link></span>
+                    </form>
+                </div>
             </div>
-        </div>
+            </div>
         </div>
     </section>
   )

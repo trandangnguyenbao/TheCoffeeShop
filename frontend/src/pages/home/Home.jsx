@@ -36,13 +36,13 @@ const Home = () => {
         <section id='container__home'>
           <div className="container container__home col-12">
             <ul className="container__home col-12">
-              <a href=""  className="container__home--item col-lg-6 col-md-12 col-sm-12 col-12"><li>
+              <a href=""  className="container__home--item col-lg-6 col-md-12 col-sm-12 col-12 row"><li>
                 <img src={Banner1} alt="" className='home__item--image' />
               </li></a>
               {
                 productData.getProducts(6).map((item, index) => {
                   return (
-                    <a href={`/product/${item.path_name}`} className='home__item--container col-lg-3 col-md-6 col-sm-6 col-6'><li index = {index}>
+                    <Link to={`/product/${item.path_name}`} className='home__item--container col-lg-3 col-md-6 col-sm-6 col-6 px-3'><li index = {index}>
                       <img src={item.img} alt="" />
                       <h5 className='home__item--name'>{item.title}</h5>
                       <span className='home__item--cost'>{item.cost}</span>
@@ -54,7 +54,7 @@ const Home = () => {
                             <i><BsFillBagFill /></i>
                           </li>
                       </ul>
-                    </li></a>
+                    </li></Link>
                   )
                 })
               }
@@ -109,19 +109,19 @@ const Home = () => {
             {
               slideHome.map(({title, descript, child, id}, index) => {
                 return (
-                  <div className="slidehome__item col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div className={`slidehome__item--child${id} col-lg-4 col-md-4 col-sm-12 col-12`}>
-                        <a href="" className='slidehome__item-child'><h3>{title}</h3></a>
-                        <a href="" className='slidehome__item-child'><p>{descript}</p></a>
-                        <a href="" className='slidehome__item-child'><button>Tìm hiểu thêm</button></a>
+                  <div className="slidehome__item col-lg-12 col-md-12 col-sm-12 col-12 row">
+                    <div className={`slidehome__item--child${id} col-lg-4 col-md-5 col-sm-12 col-12 px-3`}>
+                        <Link to="/pages/shop" className='slidehome__item-child'><h3>{title}</h3></Link>
+                        <Link to="/pages/shop" className='slidehome__item-child'><p>{descript}</p></Link>
+                        <Link to="/pages/shop" className='slidehome__item-child'><button>Tìm hiểu thêm</button></Link>
                     </div>
-                    <ul className={`slidehome__item--child${id} col-lg-8 col-md-8 col-sm-12 col-12`}>
+                    <ul className={`slidehome__item--child${id} col-lg-8 col-md-7 col-sm-12 col-12`}>
                         {
                           child.map(({id, img}) => {
                             return(
-                              <a href="#" className="slidehome__item--img" key = {index}>
+                              <Link to="#" className="slidehome__item--img" key = {index}>
                                   <li><img src={img} alt="" /></li>
-                              </a>
+                              </Link>
                             )
                           })
                         }
