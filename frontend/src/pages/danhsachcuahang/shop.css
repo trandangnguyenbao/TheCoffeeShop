@@ -115,7 +115,8 @@ li.shop__right--item{
 .shop__right--item button{
     width: 100%;
     height: 40px;
-    background-color: var(--background--color-pink);
+    background-color: #f1ba8980;
+    border-radius: 5px;
 }
 
 .shop__right--item button a{
@@ -172,7 +173,9 @@ li.right__item--descript span{
     height: 40px;
     width: 300px;
     text-align: center;
-    margin: 0 35%;
+    margin:  0 auto;
+    display: flex;
+    justify-content: center;
     border-radius: 5px;
     font-size: 17px;
     font-weight: 600;
@@ -231,5 +234,18 @@ select.container__shop--left{
         padding: 10% 0;
         margin: 0;
         line-height: 50px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    select.select__shop{
+        width: 100%;
+    }
+    .container__shop--right button:last-child{
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
     }
 }

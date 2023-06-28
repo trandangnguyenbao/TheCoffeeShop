@@ -5,6 +5,7 @@ import {AiOutlineCloseCircle, AiOutlineFacebook, AiOutlineLink, AiOutlinePlus} f
 import { API_BASE_URL } from '../../config'
 import {AiOutlineNotification} from 'react-icons/ai'
 import {BsFillChatLeftFill} from 'react-icons/bs'
+import Empty from '../../images/empty-cart.png'
 import {FaRegUserCircle} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import React from 'react'
@@ -35,6 +36,15 @@ const Order = () => {
           }
           fetchOrder();
       }, [])
+
+    const allOrder =  order?.filter((item) => item.name === userInfo.phone)
+
+    const itemsPerPage = 4;
+    const totalPages = Math.ceil(allOrder.length / itemsPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentPageItems = allOrder.slice(startIndex, endIndex);
     return (
         <div className="container container__accountpage col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="container__accountpage--navbar col-lg-3 col-md-4 col-sm-12 col-12 px-3">
@@ -70,28 +80,46 @@ const Order = () => {
             <div className="container__accountpage--contain col-lg-9 col-md-8 col-sm-12 col-12">
                 <h3>Các đơn hàng của bạn</h3>
                 <div className="container__order--container">
+                    <table>
                     <tr>
-                        <th>Mã Đơn Hàng</th>
-                        <th>Người Nhận Hàng</th>
+                        <th>Mã Hàng</th>
+                        <th>Người Nhận</th>
                         <th>Tổng Tiền</th>
-                        <th>Ngày Đặt</th>
-                        <th>Trạng Thái Đơn Hàng</th>
+                        <th>Trạng Thái</th>
                     </tr>
-                    {
-                        order.map(order => {
-                            if (order.name === userInfo.phone){
-                                return (
-                                    <tr>
-                                        <td>{order.id_order}</td>
-                                        <td>{order.name}</td>
-                                        <td>{formatProductPrice(order.totalPrice)}</td>
-                                        <td>{order.updatedAt}</td>
-                                        <td>{order.status}</td>
-                                    </tr>
-                                )
-                            }
+                    {currentPageItems.length > 0 ? (
+                        currentPageItems.map((order) => {
+                        return (
+                            <tr key={order.id_order}>
+                            <td>{order.id_order}</td>
+                            <td>{order.name}</td>
+                            <td>{formatProductPrice(order.totalPrice)}</td>
+                            <td>{order.status}</td>
+                            </tr>
+                        );
                         })
-                    }
+                    ) : (
+                        <tr className="not-found__order">
+                        <td colSpan={4} style={{ textAlign: 'center', height: 'auto' }}>
+                            <img style={{ height: '150px', width: '150px' }} src={Empty} /> <br />
+                            <p style={{ color: '#000', fontSize: '16px', fontWeight: '600' }}>
+                            Không có đơn hàng nào trong giỏ hàng
+                            </p>
+                        </td>
+                        </tr>
+                    )}
+                    </table>
+                    <div className="pagination">
+                    {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                        <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={page === currentPage ? 'active' : ''}
+                        >
+                        {page}
+                        </button>
+                    ))}
+                    </div>
                 </div> 
                 <div className="container__order--container d-none">
                     <ul>

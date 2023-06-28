@@ -1,7 +1,7 @@
 .container__accountpage{
     padding: 2rem 0;
     display: flex;
-    min-height: 700px;
+    min-height: 550px;
     height: auto;
 }
 
@@ -12,6 +12,18 @@ ul.container__accountpage--navbar{
 
 ul.container__accountpage--navbar hr{
     width: 80%;
+}
+
+.pagination button{
+    padding: 4px 15px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    margin: 1rem 5px;
+}
+
+.pagination button.active{
+    background-color: var(--primary--text-hover);
+    color: #ffffff;
 }
 
 li.container__accountpage--navbar{
@@ -56,7 +68,7 @@ li.active p:not(:first-child), li.active i {
 
 .contain--item{
     display: flex;
-}
+}  
 
 .contain--item div{
     padding: 0 20px;
@@ -85,15 +97,27 @@ button.Update{
 }
 
 form .update{
-    padding: 1rem 30%;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+    width: 50%;
 }
 
 form .update button.Update{
     height: 45px;
     width: 100%;
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
     font-size: 18px;
     font-weight: 600;
     color: #fff;
+    border-radius: 6px;
     background-color: var(--primary--text-hover);
 }
 
@@ -130,6 +154,10 @@ form .update button.Update{
         height: 100%;
     }
 
+    ul.container__accountpage--navbar{
+        display: none;
+    }
+
     ul.container__accountpage--navbar hr{
         width: 100%;
     }
@@ -139,40 +167,53 @@ form .update button.Update{
 
 /* Order */
 .container__order--container{
-    /* padding: 20px; */
-    border-radius: 1px solid var(--background--color-pink);
-    background-color: var(--background--color-pink);
+    height: auto;
+    width: 100%;
+}
+
+.container__order--container table{
+    height: 100%;
+    width: 100%;
     box-shadow: 2px 2px 4px 4px #e8e7e7;
+    background-color: var(--background--color-pink);
 }
 
 .container__order--container tr th{
     font-size: 16px;
     font-weight: 600;
     color: #fff;
-    padding: 20px 20px;
+    padding: 15px;
     /* width: 100%; */
     text-align: center;
     border: 1px solid #d5d5d5; 
     background-color: rgb(241, 147, 147);
-    
+}
+
+.container__order--container tr th:first-child{
+    border-top-left-radius: 10px;
 }
 
 .container__order--container tr th:last-child{
-    width: 33%;
+    border-top-right-radius: 10px;
+}
+
+.container__order--container tr{
+    /* width: 33%; */
+    width: auto;
 }
 
 .container__order--container tr td {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color: #212020;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     border: 1px solid #d5d5d5;
 }
 
 .container__order--container tr {
     border: 1px solid #d5d5d5;
-    width: 100%;
+    width: auto;
 }
 
 .container__order--container .container__order--none{
@@ -208,4 +249,16 @@ form .update button.Update{
 .container__order--container ul{
     display: flex;
     padding: 0;
+}
+
+@media screen and (max-width:600px) {
+    .contain--item{
+        display: block;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .container__order--container tr th{
+        padding: 10px;
+    }
 }

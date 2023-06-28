@@ -9,6 +9,7 @@
 
 ul.container__storychild--item{
     height: 100%;
+    padding-left:0;
 }
 
 li.container__storychild--img img{

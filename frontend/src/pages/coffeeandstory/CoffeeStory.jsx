@@ -1,7 +1,9 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-import { Story } from '../../data'
 import './coffeestory.css'
+
+import {Link, NavLink} from 'react-router-dom'
+
+import React from 'react'
+import { Story } from '../../data'
 
 const CoffeeStory = () => {
   return (
@@ -10,10 +12,10 @@ const CoffeeStory = () => {
         <h1>Chuyện Nhà</h1>
         <div className="container__storyhome--content"><p> The Coffee House sẽ là nơi mọi người xích lại gần nhau, đề cao giá trị kết nối con người và sẻ chia thân tình bên những tách cà phê, ly trà đượm hương, truyền cảm hứng về lối sống hiện đại.</p></div>
         <ul className="story__home--menu">
-            <li  className = 'story__home--memu active' ><NavLink  to={'/pages/story'}  >Tất Cả</NavLink></li>
-            <li  className = 'story__home--memu' ><NavLink  to={'/pages/story/coffeeholic'}   >Coffeeholic</NavLink></li>
-            <li  className = 'story__home--memu' ><NavLink  to={'/pages/story/teaholic'}    >TeaHolic</NavLink></li>
-            <li  className = 'story__home--memu' ><NavLink  to={'/pages/story/blog'}   >Blog</NavLink></li>
+            <li  className = 'story__home--memu active'><Link to={'/pages/story'}  >Tất Cả</Link></li>
+            <li  className = 'story__home--memu' ><Link  to={'/pages/story/coffeeholic'}>Coffeeholic</Link></li>
+            <li  className = 'story__home--memu' ><Link  to={'/pages/story/teaholic'}>TeaHolic</Link></li>
+            <li  className = 'story__home--memu' ><Link  to={'/pages/story/blog'}   >Blog</Link></li>
         </ul>
       </div>
         <div className="container container__storyhome--contain col-lg-12 col-md-12 col-sm-12 col-12">

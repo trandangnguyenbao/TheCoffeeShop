@@ -1,13 +1,15 @@
-import React from 'react'
 import './account.css'
 import './address.css'
-import UserIcon from '../../images/UserIcon.svg'
-import {FaRegUserCircle} from 'react-icons/fa'
+
+import {AiOutlineCloseCircle, AiOutlineFacebook, AiOutlineLink, AiOutlinePlus} from 'react-icons/ai'
+
 import {AiOutlineNotification} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import {AiOutlineFacebook, AiOutlineLink, AiOutlinePlus, AiOutlineCloseCircle} from 'react-icons/ai'
-import {SiZalo} from 'react-icons/si'
 import {BsFillChatLeftFill} from 'react-icons/bs'
+import {FaRegUserCircle} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import React from 'react'
+import {SiZalo} from 'react-icons/si'
+import UserIcon from '../../images/UserIcon.svg'
 
 const AddressOrder = () => {
 
@@ -65,21 +67,6 @@ const AddressOrder = () => {
                 <h3>Danh sách địa chỉ giao hàng của bạn</h3>
                 <div className="container__addressorder--contain" onClick={handleShowForm}>
                     <p><i><AiOutlinePlus /></i>Thêm địa chỉ mới</p>
-                </div>
-                <div className="container__addressorder--contains">
-                    <p className='container__addressorder--contains--name'>Trần Đăng Nguyễn Bảo</p>
-                    <span className='container__addressorder--contains--item'><b>Địa chỉ: </b>277, Đường 12, Phường 12, Bình Thạnh, Hồ Chí Minh</span><br></br>
-                    <span className='container__addressorder--contains--item'><b>Số Điện Thoại: </b>0978567684</span>
-                </div>
-                <div className="container__addressorder--contains">
-                    <p className='container__addressorder--contains--name'>Trần Đăng Nguyễn Bảo</p>
-                    <span className='container__addressorder--contains--item'><b>Địa chỉ: </b>277, Đường 12, Phường 12, Bình Thạnh, Hồ Chí Minh</span><br></br>
-                    <span className='container__addressorder--contains--item'><b>Số Điện Thoại: </b>0978567684</span>
-                </div>
-                <div className="container__addressorder--contains">
-                    <p className='container__addressorder--contains--name'>Trần Đăng Nguyễn Bảo</p>
-                    <span className='container__addressorder--contains--item'><b>Địa chỉ: </b>277, Đường 12, Phường 12, Bình Thạnh, Hồ Chí Minh</span><br></br>
-                    <span className='container__addressorder--contains--item'><b>Số Điện Thoại: </b>0978567684</span>
                 </div>
                 <div className="container__addressorder--contains">
                     <p className='container__addressorder--contains--name'>Trần Đăng Nguyễn Bảo</p>

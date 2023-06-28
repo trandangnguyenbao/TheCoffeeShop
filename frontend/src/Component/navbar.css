@@ -1,3 +1,4 @@
+
 .nav__container {
     display: grid;
     grid-template-columns: 0fr 1fr;
@@ -52,11 +53,25 @@ li.active-nav{
     color: var(--primary--text-hover);
 }
 
+.nav-tablet-logout{
+    display: none;
+}
 
+.nav-respon{
+    display: none;
+}
 
+.nav--table, .nav--phone{
+    display: none;
+}
 
+li.nav-phone{
+    display: none;
+}
 
-
+.nav__link.nav-tablet{
+    display: block;
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
@@ -112,10 +127,21 @@ li.active-nav{
 } 
 
 @media screen and (max-width: 991px){
+    .nav__link.nav-tablet{
+        display: none;
+    }
+     
+    .nav-respon{
+        display: block;
+    }
+
+    .nav-tablet-logout{
+        display: block;
+    }
 
     .nav__container {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     ul.headermeta__container--item{
@@ -128,8 +154,7 @@ li.active-nav{
         /* padding-bottom: -10px; */
         text-align: left;
         left: 0;
-        position: absolute;
-        padding-left: 10px;
+        /* padding-left: 10px; */
         background-color: var(--background--color-pink);
         font-size: 20px;
     }
@@ -152,7 +177,7 @@ li.active-nav{
     }
 
     ::-webkit-scrollbar{
-        width: 10px;
+        width: 2px;
     }
 
     ::-webkit-scrollbar-thumb{
@@ -179,20 +204,53 @@ li.active-nav{
         font-size: 25px;
         font-weight: bolder;
     }
+
+    .nav--phone{
+        display: none;
+    }
+
+    .nav--table{
+        display: flex;
+    }
+
+    .nav--table a{
+        padding: 0 5px;
+    }
 }
 
 
 
 /* MEDIA QUERIES FOR TABLET AND MOBILE LARGE */
 @media screen and (min-width: 600px) and (max-width: 767px) {
-    /* ul.nav__link{
+    .nav--phone{
         display: none;
-    } */
-    
+    }
+    .nav--table{
+        display: flex;
+        justify-content: space-between;
+    }    
+    .nav--table a{
+        padding: 0 10px;
+    }
+
+    .nav-tablet-logout{
+        display: block;
+    }
 }
 
 /* MEDIA QUERIES FOR MOBILE */
 
-@media screen and (max-width: 1400px){
-    
+@media screen and (max-width: 600px){
+    .nav--table{
+        display: flex;
+    }
+    .nav--table a{
+        padding: 0 5px;
+    }
+    .nav--table a.user{
+        display: none;
+    }
+    .nav__link.nav-tablet{
+        display: block;
+    }
 }

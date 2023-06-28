@@ -125,7 +125,7 @@ const Shop = () => {
                                branch.map((branchs) => {
                                 if (branchs.Province_name == districtId){
                                   return (
-                                    <li className="shop__right--item col-lg-6 col-md-6 col-sm-12 col-12 pt-4" key= {branchs.Branch_id}>
+                                    <li className="shop__right--item col-lg-6 col-md-6 col-sm-12 col-12 pt-4 px-2" key= {branchs.Branch_id}>
                                       <div className="right__item--img"><img src={branchs.image} alt="" /></div>
                                       <h6>{branchs.name}</h6>
                                       <button><a href={branchs.map} className = 'map'>Xem bản đồ</a></button>

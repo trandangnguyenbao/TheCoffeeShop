@@ -1,26 +1,19 @@
 import './navbar.css'
 
-import {AiOutlineLogout, AiOutlineShoppingCart} from 'react-icons/ai'
-import {Link, NavLink} from 'react-router-dom'
+import { AiOutlineLogin, AiOutlineLogout, AiOutlineShoppingCart } from 'react-icons/ai'
+import { Link, NavLink } from 'react-router-dom'
+import { MdArrowDropDown, MdOutlineClose } from 'react-icons/md'
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
 import AccountDropdown from './AccountDropdown'
-import {AiOutlineCaretDown} from 'react-icons/ai'
-import Carticon from '../images/Carticon.png'
+import {BiUserCircle} from 'react-icons/bi'
 import Dropdown from './Dropdown'
-import {GoThreeBars} from 'react-icons/go'
+import { GoThreeBars } from 'react-icons/go'
 import Logo from '../images/logo1.png'
-import {MdArrowDropDown} from 'react-icons/md'
-import {MdOutlineAccountCircle} from 'react-icons/md'
-import {MdOutlineClose} from 'react-icons/md'
 import StoryDropdown from './StoryDropDown'
-import { createContext } from 'react'
-import { icons } from 'react-icons/lib'
 import { links } from '../data'
-import { menuItem } from '../data'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
     const [active, setActive] = useState(null);
@@ -35,7 +28,7 @@ const Navbar = () => {
             // history("/account/login")
         }
     }, [history])
-
+    
 
     // const userInfo = useSelector(state => state.userInfo);
     // const {userLogin} = userInfo;
@@ -52,6 +45,30 @@ const Navbar = () => {
             <Link className='logo' to = '/' onClick={() => setIsNavShowing(false)}>
                 <img src={Logo} alt="" />
             </Link>
+            <div className='nav--phone'>
+                <Link to={"/cart"}>
+                    <AiOutlineShoppingCart color='#E57905' size={26}/>
+                </Link>
+                <Link>
+                </Link>
+            </div>
+            <div className='nav--table'>
+                <Link to={"/cart"}>
+                    <AiOutlineShoppingCart color='#E57905' size={24}/>
+                </Link>
+                <Link>
+                {
+                    userInfo ? (
+                            <Link className='user' to={"/accountInfo"} style={{fontSize: "18px", color: "#000", fontWeight: "600"}}><BiUserCircle color='#000' size={24} />
+                            </Link>
+                            ) : (
+                            <Link to={"/account/login"} style={{fontSize: "18px", color: "#000", fontWeight: "600"}}>
+                                <AiOutlineLogin color='#000' size={24} />
+                            </Link>
+                            )            
+                }
+                </Link>
+            </div>
             <ul className={`nav__link ${isNavShowing ? 'show__nav' : 'hide__nav'}`}>
                 {
                     links.map((item,index) => {
@@ -71,14 +88,6 @@ const Navbar = () => {
                                 </li>
                             )
                         }
-                        // else if(item.name === 'Nguyễn Bảo'){
-                        //     return (
-                        //         <li key = {index} onMouseEnter = {() => setAccountDropdown(true)} onMouseLeave = {() => setAccountDropdown(false)} className = "" onClick = {() => setIsNavShowing (prev => !prev)}>
-                        //             <NavLink to = {item.path} className = {`has-child ${active == item && 'active'}`} onClick= {() => setActive(item)}>{item.name}</NavLink>
-                        //             { accountdropdown && <AccountDropdown /> }
-                        //         </li>
-                        //     )
-                        // }
                         return (
                             <>
                                 <li className='icon' onClick={() => setIsNavShowing(prev => !prev)}><MdOutlineClose/></li>
@@ -90,18 +99,27 @@ const Navbar = () => {
                         )
                     })
                 }
-                {/* <li className="nav__link"  onMouseEnter = {() => setAccountDropdown(true)} onMouseLeave = {() => setAccountDropdown(false)} onClick = {() => setIsNavShowing (prev => !prev)}>
-                                    <Link to={'/account/login'} className='has-child'>Đăng Nhập
-                                        { accountdropdown && <AccountDropdown /> }
-                                    </Link>
-                                </li> */}
                         {
                             userInfo ? (
-                            <li className="nav__link"  onMouseEnter = {() => setAccountDropdown(true)} onMouseLeave = {() => setAccountDropdown(false)} onClick = {() => setIsNavShowing (prev => !prev)}>
-                                <Link className='has-child'>{userInfo.phone}
-                                    { accountdropdown && <AccountDropdown /> }
-                                </Link>
-                            </li>
+                            <>
+                                <li className="nav__link nav-respon"  onMouseEnter = {() => setAccountDropdown(true)} onMouseLeave = {() => setAccountDropdown(false)} onClick = {() => setIsNavShowing (prev => !prev)}>
+                                    <Link className='has-child' to={"/account/order"}>
+                                        <span style={{fontSize: "15px", color: "#000", fontWeight: "600"}}>Đơn hàng</span>
+                                    </Link>
+                                </li>
+                                <li className="nav__link nav-tablet"  onMouseEnter = {() => setAccountDropdown(true)} onMouseLeave = {() => setAccountDropdown(false)} onClick = {() => setIsNavShowing (prev => !prev)}>
+                                    <Link to={'/accountInfo'} className='has-child'>{userInfo.phone}
+                                        { accountdropdown && <AccountDropdown /> }
+                                    </Link>
+                                </li>
+                                <li className="nav__link nav-tablet-logout" onClick = {() => setIsNavShowing (prev => !prev)}>
+                                    <Link to={"/account/login"} className='has-child' onClick={() => {
+                                        localStorage.removeItem("userInfo")
+                                        }}>
+                                        <span style={{fontSize: "15px", color: "#000", fontWeight: "600"}}>Đăng Xuất</span>
+                                    </Link>
+                                </li>
+                            </>
                             ) : (
                                 // <>
                                 <li className="nav__link"  onMouseEnter = {() => setAccountDropdown(true)} onMouseLeave = {() => setAccountDropdown(false)} onClick = {() => setIsNavShowing (prev => !prev)}>

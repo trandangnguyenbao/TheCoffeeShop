@@ -1,24 +1,19 @@
-import './cart.css'
 import '../AccountPage/account.css'
+import './cart.css'
 
-import {AiOutlineDelete, AiOutlineFacebook, AiOutlineLink} from 'react-icons/ai'
+import { AiOutlineDelete, AiOutlineFacebook, AiOutlineLink } from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { API_BASE_URL } from '../../config'
-import {AiOutlineHome} from 'react-icons/ai'
-import {BsFillChatLeftFill} from 'react-icons/bs'
+import { AiOutlineHome } from 'react-icons/ai'
+import { BsFillChatLeftFill } from 'react-icons/bs'
 import Empty from '../../images/empty-cart.png'
-import {GrFormNext} from 'react-icons/gr'
-import {Link} from 'react-router-dom'
-import OrderData from '../../asset/fake-data/Order'
-import React from 'react'
-import {SiZalo} from 'react-icons/si'
+import { GrFormNext } from 'react-icons/gr'
+import { SiZalo } from 'react-icons/si'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
-import productData from '../../asset/fake-data/Product'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
 
 const Cart = (props) => {
     const cart = useSelector((state) => state);
@@ -125,6 +120,13 @@ const Cart = (props) => {
           });
           history("/account/order") 
     }
+
+    const itemsPerPage = 4;
+    const totalPages = Math.ceil(cart.length / itemsPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentPageItems = cart.slice(startIndex, endIndex);
   return (
     <div className="container container__cart col-lg-12 col-md-12 col-sm-12 col-12">
         <div className="container__cart--title">
@@ -135,23 +137,24 @@ const Cart = (props) => {
         <div className="container__cart--contain col-lg-12 col-md-12 col-sm-12 col-12">
             { cart ? (
                 <div className="container__cart--contain--container col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="container__cart--contain--container--item col-lg-8 col-md-7 col-sm-12 col-12 px-2">
+                        <div className="container__cart--contain--container--item col-lg-8 col-md-8 col-sm-12 col-12 px-2">
                         <h5>Giỏ hàng của bạn {cart.length} sản phẩm</h5>
                         <div className="container__cart--item--item">
+                        <table>
                         <tr>
                             <th>Hình Ảnh</th>
-                            <th>Tên Sản Phẩm</th>
+                            <th>Sản Phẩm</th>
                             <th>Số Lượng</th>
                             <th>Giá Tiền</th>
                             <th>Tổng Tiền</th>
-                            <th>Action</th>
+                            <th>Xóa</th>
                         </tr>
-                        { cart.length > 0 ? (
-                            cart.map((product) => {
+                        { currentPageItems.length > 0 ? (
+                            currentPageItems.map((product) => {
                                 return (
                                     <tr>
                                         <td><img src={product.img} alt="" /></td>
-                                        <td>{product.title}</td>
+                                        <td><p>{product.title}</p></td>
                                         <td><div>
                                             <button
                                                 onClick={() => {
@@ -162,9 +165,9 @@ const Cart = (props) => {
                                                     }
                                                 }}
                                                 >
-                                                -
+                                                    -
                                             </button>   
-                                            <p>{product.quantity}</p>    
+                                            <span style={{paddingTop: "7px", fontSize: "18px", fontWeight: "500"}}>{product.quantity}</span>    
                                             <button onClick={() => dispatch({type: "INCREASE", payload: product})}>+</button>    
                                         </div></td>
                                         <td>{formatProductPrice(product.cost)}</td>
@@ -177,14 +180,26 @@ const Cart = (props) => {
                             <tr>
                                 <td colSpan={6} style={{textAlign: "center", height: "auto"}}>
                                     <img style={{height:"150px", width: "150px"}} src={Empty} /> <br />
-                                    <p>Đơn hàng trống</p>
+                                    <p style={{color: "#000", fontSize: "16px", fontWeight: "600"}}>Không có đơn hàng nào trong giỏ hàng</p>
                                 </td>
                             </tr>
                         )
-                        }
+                        }    
+                        </table>
+                        <div className="pagination">
+                            {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                                <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={page === currentPage ? 'active' : ''}
+                                >
+                                {page}
+                                </button>
+                            ))}
                     </div>
                     </div>
-                    <div className="container__cart--contain--container--item col-lg-4 col-md-5 col-sm-12 col-12 px-2">
+                    </div>
+                    <div className="container__cart--contain--container--item col-lg-4 col-md-4 col-sm-12 col-12 px-2">
                         <h5>Tiến hành thanh toán</h5>
                         <div className="contain--container--item--bill">
                             <p>Thanh Toán Hóa Đơn</p>
