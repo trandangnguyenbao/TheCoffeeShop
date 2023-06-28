@@ -2,14 +2,20 @@ import { toast } from "react-toastify";
 
 const Reducer = (cart = [], action) => {
     if (action.type === "ADD"){
-        let tempcart = cart.filter((product) => product.title === action.payload.title)
-        if (tempcart<1){
-            toast.success("Thêm sản phẩm thành công")
-            return [...cart, action.payload]
+        let tempcart = cart.find((product) => product.title === action.payload.title)
+        if (!tempcart){
+            toast.success("Thêm sản phẩm thành công");
+           return [...cart, action.payload]
         }
-        else{
-            toast.success("Thêm sản phẩm thành công")
-            return cart;
+        else {
+          const tempcarts = cart.map((product) => {
+            if (product.title === action.payload.title){
+              return {...product, quantity: Number(product.quantity) + Number(action.payload.quantity)}
+            }
+            return product
+          })
+          toast.success("Thêm sản phẩm thành công!")
+          return tempcarts
         }
     }
     if (action.type === "REMOVE") {

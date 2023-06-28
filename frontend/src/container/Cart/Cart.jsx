@@ -14,6 +14,7 @@ import { GrFormNext } from 'react-icons/gr'
 import { SiZalo } from 'react-icons/si'
 import axios from 'axios'
 import formatProductPrice from '../../Helper'
+import { toast } from 'react-toastify'
 
 const Cart = (props) => {
     const cart = useSelector((state) => state);
@@ -105,15 +106,17 @@ const Cart = (props) => {
 
         // Thêm Đơn Hàng
         axios.post(`${API_BASE_URL}/api/order/`,data).then(function (response) {
-            console.log(response);
+            toast.success("Đặt hàng thành công!")
           })
           .catch(function (error) {
-            console.log(error);
+            toast.error("Đặt hàng thất bại!")
           });
 
         //   Thêm Dữ Liệu Chi Tiết Đơn Hàng
         axios.post(`${API_BASE_URL}/api/orderdetail/`,datas).then(function (response) {
-            console.log(response);
+            cart.map((item) => {
+                dispatch({type: "REMOVE", payload: item})
+            })
           })
           .catch(function (error) {
             console.log(error);
@@ -167,7 +170,7 @@ const Cart = (props) => {
                                                 >
                                                     -
                                             </button>   
-                                            <span style={{paddingTop: "7px", fontSize: "18px", fontWeight: "500"}}>{product.quantity}</span>    
+                                            <span style={{paddingTop: "0px", fontSize: "18px", fontWeight: "500"}}>{product.quantity}</span>    
                                             <button onClick={() => dispatch({type: "INCREASE", payload: product})}>+</button>    
                                         </div></td>
                                         <td>{formatProductPrice(product.cost)}</td>

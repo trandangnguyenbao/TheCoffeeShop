@@ -13,6 +13,7 @@ import HomeStoryImage from '../../images/coffee-2.jpg'
 import { Link } from 'react-router-dom'
 import SliderImage from '../../images/slide1.png'
 import productData from '../../asset/fake-data/Product'
+import { useDispatch } from 'react-redux'
 
 // import heroSliderData from '../../asset/fake-data/hero-slider'
 
@@ -25,6 +26,8 @@ const Home = () => {
   useEffect((slidehome) => {
     setSlideHome(slidehome = slidehome + 1);
   }, [])
+
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -41,18 +44,19 @@ const Home = () => {
               </li></a>
               {
                 productData.getProducts(6).map((item, index) => {
+                  item.quantity = 1;
                   return (
-                    <Link to={`/product/${item.path_name}`} className='home__item--container col-lg-3 col-md-6 col-sm-6 col-6 px-3'><li index = {index}>
+                    <Link key={index} to={`/product/${item.path_name}`} className='home__item--container col-lg-3 col-md-6 col-sm-6 col-6 px-3'><li index = {index}>
                       <img src={item.img} alt="" />
                       <h5 className='home__item--name'>{item.title}</h5>
                       <span className='home__item--cost'>{item.cost}</span>
                       <ul className='home__item--icon'>
-                          <li className="home__item--icon">
+                          <Link to={`/product/${item.path_name}`}><li className="home__item--icon">
                               <i><AiTwotoneHeart/></i>
-                          </li>
-                          <li className="home__item--icon pt-3">
+                          </li></Link>
+                          <Link to={'/cart'} onClick = {() => dispatch({type: "ADD", payload: item})}><li className="home__item--icon pt-3">
                             <i><BsFillBagFill /></i>
-                          </li>
+                          </li></Link>
                       </ul>
                     </li></Link>
                   )

@@ -30,16 +30,6 @@ const Chitiet = ({match, history}) => {
   const {path_name} = useParams(); 
   const [active, setActive] = useState(null);
   let itemSize = document.querySelector('li.item__size--select')
-  const handleSelectSize = () => {
-    if(itemSize.classList.contains('active')){
-      itemSize.classList.remove('active');
-  }
-    else{
-      itemSize.classList.add('active');
-    }
-
-    console.log(itemSize)
-  }
 
   const [soluong, setSoluong] = useState(1);
   const [addCost, setAddCost] = useState(0);
@@ -65,7 +55,7 @@ const Chitiet = ({match, history}) => {
         {
           (Products.length > 0 && Catalogs.length > 0) ? (
             Products.map((product) => {
-              product.quantity = 1
+              product.quantity = soluong
               if (product.path_name === path_name){
                 let categories = Catalogs.find(item => item.name == product.catalog)
                 return(

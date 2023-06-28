@@ -7,8 +7,6 @@ import { API_BASE_URL } from '../../config'
 import UserIcon from '../../images/UserIcon.svg'
 import { toast } from 'react-toastify'
 
-// import { History, useHistory } from 'react-router-dom'
-
 
 const SignUp = () => {
     const history = useNavigate();
@@ -41,15 +39,12 @@ const SignUp = () => {
                 confirmPassword: confirmPassword
             })
         });
-
         const data = await res.json();
-
         if (data.status === 400){
             toast.error("Tài Khoản Đã Tồn Tại!")
         }
         else{
             toast.success("Đăng Ký Tài Khoản Thành Công!")
-
             history("/account/login")
         }
     }

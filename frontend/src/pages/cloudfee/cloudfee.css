@@ -264,3 +264,10 @@ ul.container__icon a li:hover{
     right: 5%;
     }
 }
+
+
+@media screen and (max-width: 600px) {
+    .container__icon{
+        display: none;
+    }
+}

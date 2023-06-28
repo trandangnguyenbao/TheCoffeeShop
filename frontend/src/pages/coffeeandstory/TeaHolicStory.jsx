@@ -28,14 +28,14 @@ const TeaHolicStory = () => {
                 <li  className = 'story__home--memu' ><NavLink className = '' to={'/pages/story/blog'}   >Blog</NavLink></li>
             </ul>
         </div>
-        <div className="container container__storychild col-lg-12 col-md-12 col-sm-12 col-12">
+        <div className="container container__storychild col-lg-12 col-md-12 col-sm-12 col-12 ">
             {
                StoryBlog.map(({type_story, children}, index) => {
                     if (type_story === "TeaHolic"){
                         return (
                             children.map((children, index) => {
                                 return (
-                                    <ul className="container__storychild--item col-lg-4 col-md-4 col-sm-6 col-12 py-2" key={index}>
+                                    <ul className="container__storychild--item col-lg-4 col-md-4 col-sm-6 col-12 py-2 px-2" key={index}>
                                         <li className="container__storychild--img col-lg-12 col-md-12 col-sm-12 col-12">
                                             <a href = {children.link} ><img src={children.img} alt="" /></a>
                                         </li>

@@ -99,17 +99,21 @@
 .container__cart--item--item table{
     width: 100%;
     height: 100%;
-    background-color: #f1ba8980;
+    /* background-color: #f1ba8980; */
     border: none;
 }
 
 .container__cart--item--item tr th{
     padding: 10px;
-    border: 2px solid #d5d5d5;
+    border-right: 2px solid #d5d5d5;
     padding: 10px 20px;
     background-color: #EA8025;
     width: auto;
     text-align: center;
+}
+
+.container__cart--item--item tr th:last-child{
+    border-right: none;
 }
 .container__cart--item--item table tr td{
     border: 2px solid #e2e2e2!important;
@@ -158,7 +162,6 @@
 .container__cart--item--item tr td button{
     font-size: 20px;
     align-items: center;
-    margin-bottom: 10px;
     color: #EA8025;
     background-color: transparent;
 }
@@ -225,6 +228,12 @@
 @media screen and (max-width: 768px){
     .container__cart--contain--container{
         display: block;
+    }
+    .container__cart--title{
+        padding: 1rem 0;
+    }
+    .container__cart--contain{
+        padding-bottom: 3rem;
     }
 }
 

@@ -7,6 +7,7 @@ import { API_BASE_URL } from '../../config';
 import Message from '../../LoadingError/Error';
 import UserIcon from '../../images/UserIcon.svg';
 import axios from "axios";
+import {toast} from "react-toastify"
 
 const Login = () => {
     const history = useNavigate();
@@ -15,6 +16,8 @@ const Login = () => {
     const [password, setPassWord] = useState('')
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [phoneError, setPhoneError] = useState("")
+    const [passwordError, setPasswordError] = useState("")
 
     useEffect(() => {
         const userInfo = localStorage.getItem("userInfo");
@@ -25,22 +28,70 @@ const Login = () => {
     }, [history])
     const submitHandler = async (e) => {
         e.preventDefault();
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
+        const phoneNumberRegex = /^(0|\+84)(\d{9})$/;
+        if(phoneNumberRegex.test(phone) && password.length >= 6){
+            setPasswordError("")
+            setPhoneError("")
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                setLoading(true)
+
+                const { data } = await axios.post(`${API_BASE_URL}/api/user/login`, {
+                    phone, password
+                }, config)
+                toast.success("Đăng nhập thành công")
+                localStorage.setItem('userInfo', JSON.stringify(data));
+                history("/")
+                setLoading(false);
+            } catch (error) {
+                toast.error("Tài khoản hoặc mật khẩu không đúng!")
+                setError(error.response.data.message);
+            }
+        }
+        else{
+            const phoneNumberRegex = /^(0|\+84)(\d{9})$/;
+            if (phone !== "" && phoneNumberRegex.test(phone)){
+                setPhoneError("")
+                if (password.length < 6 && password !== ""){
+                    setPasswordError('Mật khẩu phải bao gồm tối thiểu 6 chữ số')
+                }
+                else if (password === "") {
+                    setPasswordError("Vui lòng nhập mật khẩu của bạn")
+                }
+                else{
+                    setPasswordError("")
+                }    
+            }
+            else if(phone !== "" && !phoneNumberRegex.test(phone)){
+                if (password.length >= 6){
+                    setPasswordError("")
+                    setPhoneError('Số điện thoại không hợp lệ')
+                }
+                else if (password === ""){
+                    setPasswordError("Vui lòng nhập mật khẩu")
+                    setPhoneError('Số điện thoại không hợp lệ')
+                }
+                else {
+                    setPasswordError("Mật khẩu ít nhất 6 ký tự")
+                    setPhoneError('Số điện thoại không hợp lệ')
                 }
             }
-            setLoading(true)
-
-            const { data } = await axios.post(`${API_BASE_URL}/api/user/login`, {
-                phone, password
-            }, config)
-            localStorage.setItem('userInfo', JSON.stringify(data));
-            history("/")
-            setLoading(false);
-        } catch (error) {
-            setError(error.response.data.message);
+            else if (phone === "" && password.length >= 6) {
+                setPhoneError("Vui lòng nhập số điện thoại")
+                setPasswordError("")
+            }
+            else if (phone === "" && password === "") {
+                setPasswordError("Vui lòng nhập mật khẩu của bạn")
+                setPhoneError("Vui lòng nhập số điện thoại")
+            }
+            else{
+                setPasswordError("Mật khẩu ít nhất 6 ký tự")
+                setPhoneError("Vui lòng nhập số điện thoại")
+            }
         }
     }
   return (
@@ -59,11 +110,13 @@ const Login = () => {
                             <label >Số điện thoại: </label>
                             <input type="text" placeholder="Nhập số điện thoại" id="phone" autocomplete="username"
                             value={phone} onChange = {(e) => setPhone(e.target.value)} />
+                            <p>{(phoneError) ? (phoneError) : ("")}</p>
                         </div>
                         <div class="form-control">
                             <label >Password: </label>
                             <input type="password" placeholder='Nhập mật khẩu' name="" id="password" autocomplete="current-password"
                             onChange = {(e) => setPassWord(e.target.value)}/>
+                            <p>{(passwordError) ? (passwordError) : ("")}</p>
                         </div>   
                         <div className="loginFrom">
                             <div className="loginForm--duytri">
