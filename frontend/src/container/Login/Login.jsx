@@ -121,7 +121,7 @@ const Login = () => {
                         <div className="loginFrom">
                             <div className="loginForm--duytri">
                                 <input type="checkbox" name="" id="" />
-                                <label htmlFor="">Duy trì đăng nhập</label>
+                                <label htmlFor="">Nhớ Tài khoản</label>
                             </div>
                             <a href="">Quên mật khẩu</a>
                         </div>       
