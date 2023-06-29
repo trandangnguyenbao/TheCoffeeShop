@@ -19,6 +19,14 @@
     max-width: 450px;
     position: relative;
 }
+.form-control p{
+    color: red;
+    font-weight: 500;
+}
+
+.form-control input.error{
+    border: 2px solid red;
+}
 
 .signup__container .signups{
     height: auto;
@@ -63,7 +71,7 @@
 }
 
 .form-control input {
-	border: 2px solid #f0f0f0;
+	border: 2px solid #cdcdcd;
 	border-radius: 4px;
 	display: block;
 	font-family: inherit;

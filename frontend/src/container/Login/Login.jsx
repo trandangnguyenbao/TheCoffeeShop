@@ -108,13 +108,13 @@ const Login = () => {
                     <form action="" id='form' onSubmit={submitHandler}>
                         <div class="form-control">
                             <label >Số điện thoại: </label>
-                            <input type="text" placeholder="Nhập số điện thoại" id="phone" autocomplete="username"
+                            <input type="text" className={(phoneError) ? "error" : ""} placeholder="Nhập số điện thoại" id="phone" autocomplete="username"
                             value={phone} onChange = {(e) => setPhone(e.target.value)} />
                             <p>{(phoneError) ? (phoneError) : ("")}</p>
                         </div>
                         <div class="form-control">
                             <label >Password: </label>
-                            <input type="password" placeholder='Nhập mật khẩu' name="" id="password" autocomplete="current-password"
+                            <input type="password" className={(passwordError) ? "error" : ""} placeholder='Nhập mật khẩu' name="" id="password" autocomplete="current-password"
                             onChange = {(e) => setPassWord(e.target.value)}/>
                             <p>{(passwordError) ? (passwordError) : ("")}</p>
                         </div>   
