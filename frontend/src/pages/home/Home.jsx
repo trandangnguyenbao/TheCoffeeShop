@@ -12,6 +12,7 @@ import CloudeImage2 from '../../images/_creamy.jpg'
 import HomeStoryImage from '../../images/coffee-2.jpg'
 import { Link } from 'react-router-dom'
 import SliderImage from '../../images/slide1.png'
+import formatProductPrice from '../../Helper'
 import productData from '../../asset/fake-data/Product'
 import { useDispatch } from 'react-redux'
 
@@ -49,7 +50,7 @@ const Home = () => {
                     <Link key={index} to={`/product/${item.path_name}`} className='home__item--container col-lg-3 col-md-6 col-sm-6 col-6 px-3'><li index = {index}>
                       <img src={item.img} alt="" />
                       <h5 className='home__item--name'>{item.title}</h5>
-                      <span className='home__item--cost'>{item.cost}</span>
+                      <span className='home__item--cost'>{formatProductPrice(item.cost)}</span>
                       <ul className='home__item--icon'>
                           <Link to={`/product/${item.path_name}`}><li className="home__item--icon">
                               <i><AiTwotoneHeart/></i>

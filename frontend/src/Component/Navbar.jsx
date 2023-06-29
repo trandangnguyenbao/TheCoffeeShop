@@ -21,6 +21,9 @@ const Navbar = () => {
     const [storydropdown, setStoryDropdown] = useState(false);
     const [accountdropdown, setAccountDropdown] = useState(false);
     const [isNavShowing,setIsNavShowing] = useState(false);
+
+    const [activeNav, setActiveNav] = useState("Trang Chủ")
+    console.log(activeNav)
     const history = useNavigate()
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     useEffect(() => {
@@ -74,7 +77,7 @@ const Navbar = () => {
                     links.map((item,index) => {
                         if(item.name === 'Menu' ){
                             return (
-                                <li key = {index} onClick = {() => setIsNavShowing (prev => !prev)} onMouseEnter = {() => setDropdown(true)} onMouseLeave = {() => setDropdown(false)}>
+                                <li key = {index} onClick = {() => setIsNavShowing (prev => !prev) && setActiveNav(item.name)} onMouseEnter = {() => setDropdown(true)} onMouseLeave = {() => setDropdown(false)}>
                                     <NavLink to = {item.path} className = {`has-child ${active == item && 'active'}`} onClick= {() => setActive(item)}>{item.name}<MdArrowDropDown /></NavLink>
                                     { dropdown && <Dropdown /> }
                                 </li>
@@ -82,7 +85,7 @@ const Navbar = () => {
                         }
                         else if(item.name === 'Chuyện nhà'){
                             return (
-                                <li key = {index} onClick = {() => setIsNavShowing (prev => !prev)} onMouseEnter = {() => setStoryDropdown(true)} onMouseLeave = {() => setStoryDropdown(false)} className = "">
+                                <li key = {index} onClick = {() => setIsNavShowing (prev => !prev) && setActiveNav(item.name)} onMouseEnter = {() => setStoryDropdown(true)} onMouseLeave = {() => setStoryDropdown(false)} className = "">
                                     <NavLink to = {item.path} className = {`has-child ${active == item && 'active'}`} onClick= {() => setActive(item)}>{item.name}<MdArrowDropDown /></NavLink>
                                     { storydropdown && <StoryDropdown /> }
                                 </li>
@@ -91,7 +94,7 @@ const Navbar = () => {
                         return (
                             <>
                                 <li className='icon' onClick={() => setIsNavShowing(prev => !prev)}><MdOutlineClose/></li>
-                                <li key = {index} className = "">
+                                <li key = {index} className = {(activeNav === item.name) ? "active-nav" : ""} onClick={() => setActiveNav(item.name)}>
                                     <NavLink to = {item.path}
                                     onClick = {() => setIsNavShowing (prev => !prev)}>{item.name}</NavLink>
                                 </li>
